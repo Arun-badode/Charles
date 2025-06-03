@@ -5,6 +5,8 @@ import Navbar from "./layout/Navbar";
 import Sidebar from "./layout/Sidebar";
 import { useState } from "react";
 import Login from "./authtication/Login";
+import LandingPage from "./components/Landing/LandingPage.jsx";
+
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -38,7 +40,12 @@ function App() {
             isSidebarCollapsed ? "collapsed " : ""
           }`}
         >
-          <Routes><Route path="/" element={<Login />} /></Routes>
+          <Routes>
+            
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<LandingPage />} />
+            
+            </Routes>
         </div>
       </div>
     </>
