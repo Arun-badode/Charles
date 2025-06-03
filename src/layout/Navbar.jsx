@@ -8,7 +8,7 @@ const Navbar = ({ toggleSidebar }) => {
           <div className="nav-content">
             <div className="nav-bran">
               <a className="nav-brand" href="#">
-                ProcXa-AI
+               Project Management
               </a>
               <div className="nav-taggle-icon" onClick={toggleSidebar}>
                 <a href="#">

@@ -1,0 +1,121 @@
+/* 
+
+
+
+
+Container to center the card vertically and horizontally */
+
+
+
+.custom-card {
+    padding: 1rem; /* equal to p-4 (Bootstrap) */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* shadow-sm approx */
+    min-width: 320px;
+    max-width: 400px;
+    border-radius: 12px;
+    background-color: white; /* because .card bg */
+  }
+  
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8faff;
+    padding: 10px;
+  }
+  
+  /* Card styling */
+  .login-card {
+    background-color: #ffffff;
+    padding: 40px 32px 32px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgb(0 0 0 / 0.05);
+    width: 100%;
+    max-width: 600px; /* increased width */
+    min-width: 500px; /* optional, to keep it not too narrow on larger screens */
+  }
+  
+  /* Title */
+  .login-title {
+    color: #2d6efd; /* bootstrap primary blue */
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  
+  /* Subtitle */
+  .login-subtitle {
+    color: #6c757d; /* muted gray */
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  /* Labels */
+  .login-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #212529;
+    margin-bottom: 6px;
+  }
+  
+  /* Inputs */
+  .login-input {
+    border-radius: 8px;
+    height: 44px;
+    font-size: 14px;
+    padding: 10px 12px;
+    border: 1.2px solid #dbe2ef;
+    color: #495057;
+  }
+  
+  .login-input::placeholder {
+    color: #ced4da;
+  }
+  
+  /* Button */
+  .login-btn {
+    background-color: #2d6efd;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 12px 0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-btn:hover {
+    background-color: #1a4ed8;
+  }
+  
+  /* Links container */
+  .login-links {
+    margin-top: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  /* Link style */
+  .login-link {
+    color: #2d6efd;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: text-decoration 0.3s ease;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  
+  @media (min-width: 1200px) {
+    .login-card {
+      max-width: 700px;
+    }
+  }
+  

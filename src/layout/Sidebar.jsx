@@ -26,7 +26,7 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
       <div className="sidebar">
         <ul className="menu">
           {/* Dashboard Section */}
-          <li className={`menu-item ${isActive("/aaa") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
               onClick={() => {navigate("/kkk"); menuItemClick();} } >

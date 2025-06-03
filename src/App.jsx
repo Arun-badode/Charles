@@ -1,9 +1,10 @@
-import { Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./layout/Navbar";
 import Sidebar from "./layout/Sidebar";
 import { useState } from "react";
+import Login from "./authtication/Login";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -16,7 +17,7 @@ function App() {
   };
   const location = useLocation();
 
-  const hideLayout = location.pathname === "";
+  const hideLayout = location.pathname === "/";
   return (
     <>
       {/* navbar */}
@@ -37,7 +38,7 @@ function App() {
             isSidebarCollapsed ? "collapsed " : ""
           }`}
         >
-          <Routes>{/* <Route path="/" element={<Login />} /> */}</Routes>
+          <Routes><Route path="/" element={<Login />} /></Routes>
         </div>
       </div>
     </>
