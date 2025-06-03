@@ -51,10 +51,10 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               <span className="blue">Project</span>
             </div>
           </li>
-          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/task") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/task"); menuItemClick();} } >
               <span><BiAlarm /></span>
               <span className="red">Tasks</span>
             </div>
