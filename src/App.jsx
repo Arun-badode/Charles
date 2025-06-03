@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 
@@ -11,8 +12,8 @@ import Calendar from "./Component/Calendar/Calendar";
 import LandingPage from "./components/Landing/LandingPage.jsx";
 import AdminDashboard from "./Component/AdminDashboard/AdminDashboard.jsx";
 import ClientManagement from "./Component/Client/Client.jsx";
-import ProjectCalendar from "./Component/Project/Project.jsx";
 import UserManagement from "./Component/User/User.jsx";
+import Invitations from "./Component/Invitations/Invitations.jsx";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -31,7 +32,8 @@ function App() {
   const hideLayout =
     location.pathname === "/" ||
     location.pathname === "/login" ||
-    location.pathname === "/signup";
+    location.pathname === "/signup" ||
+     location.pathname === "/invitations";
 
   return (
     <>
@@ -57,8 +59,10 @@ function App() {
               <Route path="/dashboard" element={<AdminDashboard/>} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/client" element={<ClientManagement />} />
-              <Route path="/project" element={< ProjectCalendar/>} />
+              {/* <Route path="/project" element={< ProjectCalendar/>} /> */}
               <Route path="/user" element={< UserManagement/>} />
+              
+               <Route path="/invitations" element={< Invitations/>} />
               {/* Add other routes here */}
             </Routes>
           </div>

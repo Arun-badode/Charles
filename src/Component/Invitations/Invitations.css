@@ -1,0 +1,51 @@
+.invite-bg {
+  background: #fafbff;
+  min-height: 100vh;
+}
+
+.invite-card {
+  max-width: 500px;
+  margin: 40px auto;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(80, 80, 180, 0.10);
+}
+
+.invite-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.invite-subtitle {
+  font-size: 1.1rem;
+}
+
+.invite-input {
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+}
+
+.btn-invite {
+  background: #a259e6;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: none;
+  transition: background 0.2s;
+}
+.btn-invite:hover, .btn-invite:focus {
+  background: #8d3ee6;
+  color: #fff;
+}
+
+.invite-link {
+  color: #222;
+  font-size: 1.05rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.invite-link:hover {
+  color: #a259e6;
+}
