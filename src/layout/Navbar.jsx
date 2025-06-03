@@ -6,7 +6,7 @@ const Navbar = ({ toggleSidebar }) => {
   return (
     <>
       <nav className="navbar navbar-light">
-        <div className="container-fluid nav-conte">
+        <div className="container nav-conte">
           <div className="nav-content">
             <div className="nav-bran">
               <h1 className="nav-brand" >

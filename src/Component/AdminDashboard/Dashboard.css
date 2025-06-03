@@ -1,6 +1,7 @@
 .dashboard-kanban-bg {
   background: #f7f9fb;
   min-height: 100vh;
+  margin-top: 0px !important;
 }
 /* Make all columns and cards equal height */
 @media (min-width: 992px) {
