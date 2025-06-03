@@ -64,7 +64,15 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               className="menu-link menu-i"
               onClick={() => {navigate("/kkk"); menuItemClick();} } >
              <span> <RiTeamLine /></span>
-              <span className="green">Team</span>
+              <span className="green">Client</span>
+            </div>
+          </li>
+           <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+             <span> <RiTeamLine /></span>
+              <span className="User">User</span>
             </div>
           </li>
           <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>

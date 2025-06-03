@@ -19,7 +19,7 @@ function App() {
   };
   const location = useLocation();
 
-  const hideLayout = location.pathname === "/";
+  const hideLayout = location.pathname === "";
   return (
     <>
       {/* navbar */}
@@ -43,7 +43,8 @@ function App() {
           <Routes>
             
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<LandingPage />} />
+             {/* <Route path="/client" element={<Client/>} /> */}
+            {/* <Route path="/" element={<LandingPage />} /> */}
             
             </Routes>
         </div>
