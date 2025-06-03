@@ -1,7 +1,7 @@
 
  import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; 
-
+import "./LandingPage.css"; // Custom styles for the landing page
 
 
 const plans = [
