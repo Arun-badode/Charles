@@ -1,10 +1,10 @@
 .sidebar-container {
   width: 250px;
-  background-color: white;
+  background-color: rgb(224, 224, 224);
   height: 89vh;
   overflow-y: auto;
   transition: width 0.3s ease;
-  margin-top: 85px;
+  
   z-index: 1;
   position: fixed;
 }
@@ -23,6 +23,8 @@
 }
 .sidebar {
   padding: 10px;
+ 
+  
 }
 
 .menu {
@@ -175,10 +177,16 @@
   visibility: hidden;
 }
 
-.menu-item.active {
-  background-color: red;
-  color: white; /* Optional: to make text visible on red background */
+.User{
+  margin-left: 10px;
+  color: rgb(164, 14, 218);
 }
+.sidebar-container.collapsed .menu .User{
+  opacity: 0;
+  visibility: hidden;
+}
+
+
 
 /* Optional: change text color inside active menu item */
 

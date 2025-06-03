@@ -10,6 +10,9 @@ import Login from "./authtication/Login";
 import Calendar from "./Component/Calendar/Calendar";
 import LandingPage from "./components/Landing/LandingPage.jsx";
 import AdminDashboard from "./Component/AdminDashboard/AdminDashboard.jsx";
+import ClientManagement from "./Component/Client/Client.jsx";
+import ProjectCalendar from "./Component/Project/Project.jsx";
+import UserManagement from "./Component/User/User.jsx";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -53,6 +56,9 @@ function App() {
               {/* Put all your protected or main app routes here */}
               <Route path="/dashboard" element={<AdminDashboard/>} />
               <Route path="/calendar" element={<Calendar />} />
+              <Route path="/client" element={<ClientManagement />} />
+              <Route path="/project" element={< ProjectCalendar/>} />
+              <Route path="/user" element={< UserManagement/>} />
               {/* Add other routes here */}
             </Routes>
           </div>
