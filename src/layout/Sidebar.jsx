@@ -1,6 +1,15 @@
 import React, { useState } from "react";    
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Sidebar.css";
+import { BiCube } from "react-icons/bi";
+import { BiBarChartAlt2 } from "react-icons/bi";
+import { BiAlarm } from "react-icons/bi";
+import { RiTeamLine } from "react-icons/ri";
+import { FaRegCalendar } from "react-icons/fa";
+import { BiBarChartAlt } from "react-icons/bi";
+import { FaTv } from "react-icons/fa";
+import { CiSettings } from "react-icons/ci";
+
 
 const Sidebar = ({ collapsed , menuItemClick}) => {
   const [openSubmenu, setOpenSubmenu] = useState(null); // Tracks the open submenu
@@ -30,10 +39,67 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
             <div
               className="menu-link menu-i"
               onClick={() => {navigate("/kkk"); menuItemClick();} } >
-              <i className="fa-solid fa-cubes"></i>
-              <span className="menu-text">Dashboard</span>
+              <span><BiCube /></span>
+              <span className="menu-text">Overview</span>
             </div>
           </li>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              <span> <BiBarChartAlt2 /></span>
+              <span className="blue">Project</span>
+            </div>
+          </li>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              <span><BiAlarm /></span>
+              <span className="red">Tasks</span>
+            </div>
+          </li>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+             <span> <RiTeamLine /></span>
+              <span className="green">Team</span>
+            </div>
+          </li>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+             <span> <FaRegCalendar /></span>
+              <span className="yellow">Calendar</span>
+            </div>
+          </li>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+             <span> <BiBarChartAlt /></span>
+              <span className="Analytics">Analytics</span>
+            </div>
+          </li>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              <span><FaTv /></span>
+              <span className="Reports">Reports</span>
+            </div>
+          </li>
+          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i d-flex"
+              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+             <span><CiSettings /></span>
+              <span className="Settings">Settings</span>
+            </div>
+          </li>
+         
 
           {/* Intake Management Section */}
           {/* <li className={`menu-item ${isSubmenuActive(["/intakemanagement", "/intakecateedit"]) ? "active" : ""}`}>

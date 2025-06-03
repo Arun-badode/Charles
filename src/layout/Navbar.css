@@ -1,0 +1,47 @@
+/* Responsive Navbar CSS - add in your CSS file */
+
+/* Make sure search input grows nicely on small screens */
+.navbar .input-group {
+  width: 100%;
+}
+
+/* Show toggle (hamburger) only on small devices */
+@media (min-width: 768px) {
+  .ms-3.d-md-none {
+    display: none !important;
+  }
+}
+
+/* Spacing fixes for right side icons */
+.bell-icon {
+  font-size: 1.25rem;
+  color: #000;
+  text-decoration: none;
+}
+
+.bell-icon:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Profile avatar cursor */
+.profile {
+  cursor: pointer;
+}
+
+/* Optional: make avatar icon size consistent */
+.avatar .fa-circle-user {
+  font-size: 1.8rem;
+}
+
+/* Adjust spacing on smaller screens */
+@media (max-width: 576px) {
+  .nav-conte {
+    flex-wrap: wrap;
+  }
+  .nav-main-icon {
+    margin-top: 0.5rem;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

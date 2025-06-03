@@ -1,5 +1,5 @@
 .sidebar-container {
-  width: 320px;
+  width: 250px;
   background-color: white;
   height: 89vh;
   overflow-y: auto;
@@ -110,4 +110,75 @@
   border-radius: 12px;
   padding-left: 20px;
 }
+
+.blue{
+    margin-left: 10px;
+  color: blue;
+  
+   
+}
+.sidebar-container.collapsed .menu .blue{
+  opacity: 0;
+  visibility: hidden;
+}
+.menu-item:hover{
+ background-color: #d1dad8;
+}
+.red{
+  margin-left: 10px;
+  color: red;
+}
+.sidebar-container.collapsed .menu .red{
+  opacity: 0;
+  visibility: hidden;
+}
+.green{
+   margin-left: 10px;
+  color: green;
+}
+.sidebar-container.collapsed .menu .green{
+  opacity: 0;
+  visibility: hidden;
+}
+.yellow{
+ margin-left: 10px;
+  color: rgb(16, 177, 209);
+
+}
+.sidebar-container.collapsed .menu .yellow{
+  opacity: 0;
+  visibility: hidden;
+}
+.Analytics{
+   margin-left: 10px;
+  color: rgb(209, 16, 206);
+
+}
+.sidebar-container.collapsed .menu .Analytics{
+  opacity: 0;
+  visibility: hidden;
+}
+.Reports{
+  margin-left: 10px;
+  color: rgb(90, 209, 16);
+}
+.sidebar-container.collapsed .menu .Reports{
+  opacity: 0;
+  visibility: hidden;
+}
+.Settings{
+  margin-left: 10px;
+  color: rgb(16, 209, 113);
+}
+.sidebar-container.collapsed .menu .Settings{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.menu-item.active {
+  background-color: red;
+  color: white; /* Optional: to make text visible on red background */
+}
+
+/* Optional: change text color inside active menu item */
 
