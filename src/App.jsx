@@ -4,11 +4,16 @@ import "./App.css";
 import Navbar from "./layout/Navbar";
 import Sidebar from "./layout/Sidebar";
 import { useState } from "react";
+
 import Login from "./authtication/Login";
+
 import Calendar from "./Component/Calendar/Calendar";
+import LandingPage from "./components/Landing/LandingPage.jsx";
+import AdminDashboard from "./Component/AdminDashboard/AdminDashboard.jsx";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   const menusidebarcollaps = () => {
     setIsSidebarCollapsed(true);
   };
@@ -16,41 +21,45 @@ function App() {
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prev) => !prev);
   };
+
   const location = useLocation();
 
-  const hideLayout = location.pathname === "/";
+  // Hide navbar & sidebar completely on "/", "/login" and "/signup"
+  const hideLayout =
+    location.pathname === "/" ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
+
   return (
     <>
-      {/* navbar */}
+      {/* Show Navbar only if layout is not hidden */}
       {!hideLayout && <Navbar toggleSidebar={toggleSidebar} />}
-      {/* navbar end */}
-      {/* sidebar start */}
-      <div className={`main-content  ${hideLayout ? "" : ""}`}>
-        {!hideLayout && (
-          <Sidebar
-            collapsed={isSidebarCollapsed}
-            menuItemClick={menusidebarcollaps}
-          />
-        )}
-        {/* sidebar end */}
-        {/* right side  */}
-        <div
-          className={`right-side-content ${
-            isSidebarCollapsed ? "collapsed " : ""
-          }`}
-        >
-          <Routes><Route path="/" element={<Login />} />
-          <Route path="/calendar" element={<Calendar />} />
-          </Routes>
-          
 
-          
+      {hideLayout ? (
+        // For login, signup and landing page routes: no sidebar/navbar container, just routes
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+         
+          {/* Add other public routes here if needed */}
+        </Routes>
+      ) : (
+        // For all other routes show sidebar + navbar + content
+        <div className="main-content">
+          <Sidebar collapsed={isSidebarCollapsed} menuItemClick={menusidebarcollaps} />
+
+          <div className={`right-side-content ${isSidebarCollapsed ? "collapsed" : ""}`}>
+            <Routes>
+              {/* Put all your protected or main app routes here */}
+              <Route path="/dashboard" element={<AdminDashboard/>} />
+              <Route path="/calendar" element={<Calendar />} />
+              {/* Add other routes here */}
+            </Routes>
+          </div>
         </div>
-
-        {/* right side end */}  
-
-      </div>
+      )}
     </>
   );
 }
+
 export default App;

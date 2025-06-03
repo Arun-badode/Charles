@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.css"
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -29,8 +30,9 @@ const Login = () => {
               required
             />
           </div>
-
+<Link to='/dashboard'>
           <button type="submit" className="btn btn-primary w-100 mb-3">Sign in</button>
+          </Link>
         </form>
 
         <div className="text-center">
