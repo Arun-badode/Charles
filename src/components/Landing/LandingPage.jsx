@@ -74,7 +74,7 @@ const LandingPage = () => {
         </div>
         <div className="d-none d-md-flex align-items-center gap-3">
           <a href="/signin" className="text-dark text-decoration-none">Sign In</a>
-          <a href="/get-started" className="btn btn-primary">Get Started</a>
+          <a href="/login" className="btn btn-primary">Get Started</a>
         </div>
       </nav>
 

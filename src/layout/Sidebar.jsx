@@ -35,18 +35,18 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
       <div className="sidebar">
         <ul className="menu">
           {/* Dashboard Section */}
-          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/dashboard") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/dashboard"); menuItemClick();} } >
               <span><BiCube /></span>
               <span className="menu-text">Overview</span>
             </div>
           </li>
-          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/project") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/project"); menuItemClick();} } >
               <span> <BiBarChartAlt2 /></span>
               <span className="blue">Project</span>
             </div>
@@ -59,26 +59,26 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               <span className="red">Tasks</span>
             </div>
           </li>
-          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/client") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/client"); menuItemClick();} } >
              <span> <RiTeamLine /></span>
               <span className="green">Client</span>
             </div>
           </li>
-           <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+           <li className={`menu-item ${isActive("/user") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/user"); menuItemClick();} } >
              <span> <RiTeamLine /></span>
               <span className="User">User</span>
             </div>
           </li>
-          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/calendar") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/calendar"); menuItemClick();} } >
              <span> <FaRegCalendar /></span>
               <span className="yellow">Calendar</span>
             </div>

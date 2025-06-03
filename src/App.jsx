@@ -4,12 +4,19 @@ import "./App.css";
 import Navbar from "./layout/Navbar";
 import Sidebar from "./layout/Sidebar";
 import { useState } from "react";
-import Login from "./authtication/Login";
-import LandingPage from "./components/Landing/LandingPage.jsx";
 
+import Login from "./authtication/Login";
+
+import Calendar from "./Component/Calendar/Calendar";
+import LandingPage from "./components/Landing/LandingPage.jsx";
+import AdminDashboard from "./Component/AdminDashboard/AdminDashboard.jsx";
+import ClientManagement from "./Component/Client/Client.jsx";
+import ProjectCalendar from "./Component/Project/Project.jsx";
+import UserManagement from "./Component/User/User.jsx";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   const menusidebarcollaps = () => {
     setIsSidebarCollapsed(true);
   };
@@ -17,39 +24,48 @@ function App() {
   const toggleSidebar = () => {
     setIsSidebarCollapsed((prev) => !prev);
   };
+
   const location = useLocation();
 
-  const hideLayout = location.pathname === "";
+  // Hide navbar & sidebar completely on "/", "/login" and "/signup"
+  const hideLayout =
+    location.pathname === "/" ||
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
+
   return (
     <>
-      {/* navbar */}
+      {/* Show Navbar only if layout is not hidden */}
       {!hideLayout && <Navbar toggleSidebar={toggleSidebar} />}
-      {/* navbar end */}
-      {/* sidebar start */}
-      <div className={`main-content  ${hideLayout ? "" : ""}`}>
-        {!hideLayout && (
-          <Sidebar
-            collapsed={isSidebarCollapsed}
-            menuItemClick={menusidebarcollaps}
-          />
-        )}
-        {/* sidebar end */}
-        {/* right side  */}
-        <div
-          className={`right-side-content ${
-            isSidebarCollapsed ? "collapsed " : ""
-          }`}
-        >
-          <Routes>
-            
-            <Route path="/login" element={<Login />} />
-             {/* <Route path="/client" element={<Client/>} /> */}
-            {/* <Route path="/" element={<LandingPage />} /> */}
-            
+
+      {hideLayout ? (
+        // For login, signup and landing page routes: no sidebar/navbar container, just routes
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+         
+          {/* Add other public routes here if needed */}
+        </Routes>
+      ) : (
+        // For all other routes show sidebar + navbar + content
+        <div className="main-content">
+          <Sidebar collapsed={isSidebarCollapsed} menuItemClick={menusidebarcollaps} />
+
+          <div className={`right-side-content ${isSidebarCollapsed ? "collapsed" : ""}`}>
+            <Routes>
+              {/* Put all your protected or main app routes here */}
+              <Route path="/dashboard" element={<AdminDashboard/>} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/client" element={<ClientManagement />} />
+              <Route path="/project" element={< ProjectCalendar/>} />
+              <Route path="/user" element={< UserManagement/>} />
+              {/* Add other routes here */}
             </Routes>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
+
 export default App;
