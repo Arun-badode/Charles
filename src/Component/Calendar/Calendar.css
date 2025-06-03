@@ -1,0 +1,117 @@
+.calendar-container {
+    max-width: 1200px;
+  }
+  
+  .breadcrumb-section {
+    margin-bottom: 1rem;
+  }
+  
+  .calendar-title {
+    font-weight: 700;
+  }
+  
+  .top-controls .btn-group-view button.active {
+    background-color: #212529;
+    color: #fff;
+    border-color: #212529;
+  }
+  
+  .search-input {
+    min-width: 200px;
+    max-width: 250px;
+  }
+  
+  .stats-container {
+    gap: 1rem;
+  }
+  
+  .stats-box {
+
+
+
+
+
+
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    min-width: 130px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  
+  .stats-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    font-weight: 700;
+    color: white;
+    border-radius: 50%;
+    font-size: 1rem;
+  }
+  
+  .time-events {
+    background-color: #cfe2ff; /* light blue */
+  }
+  
+  .active-projects {
+    background-color: #d1e7dd; /* light green */
+  }
+  
+  .tasks {
+    background-color: #f8d7da; /* light red */
+    color: #842029;
+  }
+  
+  .milestones {
+    background-color: #e2d9f3; /* light purple */
+    color: #5a3280;
+  }
+  
+  .month-navigation {
+    margin-bottom: 1rem;
+  }
+  
+  .calendar-table {
+    table-layout: fixed;
+    user-select: none;
+  }
+  
+  .calendar-cell {
+    vertical-align: top;
+    height: 90px;
+    padding: 0.3rem;
+    position: relative;
+  }
+  
+  .day-number {
+    font-weight: 600;
+  }
+  
+  .today-badge {
+    font-size: 0.75rem;
+    line-height: 1;
+    padding: 0.25em 0.5em;
+  }
+  
+  .event-badge {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .add-task-btn {
+    margin-top: 1rem;
+  }
+  .row {
+    white-space: nowrap;
+  }
+  .col {
+    display: inline-block;
+    float: none;
+  }
+  

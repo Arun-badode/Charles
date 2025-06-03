@@ -5,6 +5,7 @@ import Navbar from "./layout/Navbar";
 import Sidebar from "./layout/Sidebar";
 import { useState } from "react";
 import Login from "./authtication/Login";
+import Calendar from "./Component/Calendar/Calendar";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -38,8 +39,16 @@ function App() {
             isSidebarCollapsed ? "collapsed " : ""
           }`}
         >
-          <Routes><Route path="/" element={<Login />} /></Routes>
+          <Routes><Route path="/" element={<Login />} />
+          <Route path="/calendar" element={<Calendar />} />
+          </Routes>
+          
+
+          
         </div>
+
+        {/* right side end */}  
+
       </div>
     </>
   );
