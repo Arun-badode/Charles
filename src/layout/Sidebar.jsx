@@ -108,6 +108,14 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               <span className="Help">Help</span>
             </div>
           </li>
+          <li className={`menu-item ${isActive("/role") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i d-flex"
+              onClick={() => {navigate("/role"); menuItemClick();} } >
+             <span><FaRegFileAlt /></span>
+              <span className="Role">Role</span>
+            </div>
+          </li>
           <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
             <div
               className="menu-link menu-i d-flex"
