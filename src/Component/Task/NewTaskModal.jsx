@@ -78,25 +78,7 @@ const NewTaskModal = ({ show, handleClose }) => (
       </Form>
 
       {/* Example Table with Eye and 3-dot Icons */}
-      <Table striped bordered hover size="sm" className="mt-4">
-        <thead>
-          <tr>
-            <th>Task</th>
-            <th>Project</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Sample Task</td>
-            <td>Project 1</td>
-            <td>
-              <i className="bi bi-eye-fill text-primary  me-3" role="button" title="View"></i>
-              <i className="bi bi-trash-fill text-danger" role="button" title="Delete"></i>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+      
     </Modal.Body>
 
     <Modal.Footer>
