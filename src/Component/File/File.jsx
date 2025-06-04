@@ -38,7 +38,7 @@ const starter = [];
 
 const FileManager = () => {
   const [files, setFiles] = useState(starter);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
   const [dragOver, setDragOver] = useState(false);
