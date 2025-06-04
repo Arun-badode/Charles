@@ -89,7 +89,7 @@ const NewTaskModal = ({ show, handleClose }) => (
         <i className="bi bi-check-circle me-1"></i>Create Task
       </Button>
     </Modal.Footer>
-  </Modal>
+  </Modal> 
 );
 
 export default NewTaskModal;
