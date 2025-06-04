@@ -107,6 +107,14 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               <span className="Settings">Settings</span>
             </div>
           </li>
+          <li className={`menu-item ${isActive("/help") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i d-flex"
+              onClick={() => {navigate("/help"); menuItemClick();} } >
+             <span><CiSettings /></span>
+              <span className="Settings">Help</span>
+            </div>
+          </li>
          
 
           {/* Intake Management Section */}

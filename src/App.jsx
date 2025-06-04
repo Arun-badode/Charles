@@ -14,6 +14,7 @@ import AdminDashboard from "./Component/AdminDashboard/AdminDashboard.jsx";
 import ClientManagement from "./Component/Client/Client.jsx";
 import UserManagement from "./Component/User/User.jsx";
 import TaskPage from "./Component/Task/TaskPage.jsx";
+import HelpCenterPage from "./Component/Help/Help.jsx";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -64,6 +65,8 @@ function App() {
               <Route path="/user" element={< UserManagement/>} />
               
               <Route path="/task" element={<TaskPage/>} />
+
+              <Route path="/help" element={<HelpCenterPage/>} />
               
               {/* Add other routes here */}
             </Routes>
