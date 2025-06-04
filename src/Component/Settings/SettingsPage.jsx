@@ -13,7 +13,7 @@ import { FaCamera, FaUserCircle } from "react-icons/fa";
 
 const SettingsPage = () => {
   return (
-    <Container fluid className=" min-vh-100 py-4">
+    <Container fluid className="py-4">
       <Row className="justify-content-center">
         <Col md={10}>
           <h3 className="mb-4">Settings</h3>

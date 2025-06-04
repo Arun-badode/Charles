@@ -5,10 +5,10 @@ import { BsListTask, BsPeople, BsBarChart, BsGear } from "react-icons/bs";
 
 const Help = () => {
     return (
-        <div className="container">
+        <div className="container-flud p-4">
             {/* Hero Section */}
-            <h2 className="ms-3">Help Center</h2>
-            <div className="container mt-4">
+            <h2 className="">Help Center</h2>
+            <div className="container-flud mt-4 p-4">
                 <div className="hc-support-section">
 
                     <h4 className="text-center mb-4">How can we help you today?</h4>
@@ -25,7 +25,7 @@ const Help = () => {
                 </div>
             </div>
             {/* Popular Topics Section */}
-            <div className="container mt-3">
+            <div className="container-flud mt-1 p-4">
                 <div className="hc-support-section">
                     <h3 className="hc-section-title">POPULAR TOPICS</h3>
                     <div className="row g-4 justify-content-center">
@@ -66,7 +66,7 @@ const Help = () => {
 
             </div>
             {/* FAQ Section */}
-            <div className="container mt-3">
+            <div className="container-flud mt-1 p-4">
                 <div className="hc-support-section">
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <h3 className="hc-section-title mb-0">Frequently Asked Questions</h3>
@@ -165,7 +165,7 @@ const Help = () => {
             </div>
 
             {/* Support and Contact Section */}
-            <div className="container mt-3 mb-5">
+            <div className="container-flud mt-1 p-4">
                 <div className="row g-4">
                     {/* Support Options */}
                     <div className="col-lg-6">
