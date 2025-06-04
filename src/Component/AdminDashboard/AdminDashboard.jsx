@@ -426,10 +426,7 @@ const Dashboard = () => {
             <h1 className="h4 fw-bold mb-1">Dashboard Widgets</h1>
             <p className="text-muted small mb-0">Drag and drop to customize</p>
           </div>
-          <div className="d-flex flex-wrap gap-2">
-            <button className="btn btn-primary btn-sm">+ Create Dashboard</button>
-            <button className="btn btn-outline-secondary btn-sm">Add Widget</button>
-          </div>
+          
         </div>
 
         {/* Main Content */}
