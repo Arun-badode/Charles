@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, Form, Row, Col, Table } from 'react-bootstrap';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import './NewTaskModal.css';
 
 const NewTaskModal = ({ show, handleClose }) => (

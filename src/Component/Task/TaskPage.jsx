@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Table, Badge, Row, Col, Card } from 'react-bootstrap';
 import NewTaskModal from './NewTaskModal';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const tasks = [
   { task: 'Get stuff done', project: 'Secure payify.co - SSO website', status: 'Pending', priority: 'Low', assignedTo: '', dueDate: '' },
