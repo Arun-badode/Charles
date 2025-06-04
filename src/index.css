@@ -1,3 +1,15 @@
+/* Agar kisi specific container par lagana hai */
+.container-or-specific-element {
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+  height: 0px;
+  display: none;
+}
+
+
+
+
 /* Container */
 .landing-container {
   padding: 0;

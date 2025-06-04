@@ -36,7 +36,7 @@ const reports = [
 
 const ReportsAnalytics = () => {
   return (
-    <div className="container mt-5 p-4">
+    <div className="container-flud mt-2 p-5">
       <h4 className="mb-4 fw-bold">Reports & Analytics</h4>
       <div className="row">
         {reports.map((report, idx) => (

@@ -1,0 +1,10 @@
+.modal-content {
+  border-radius: 16px;
+}
+.modal-title {
+  font-weight: 600;
+}
+.btn-primary {
+  background-color: #4f46e5;
+  border: none;
+}

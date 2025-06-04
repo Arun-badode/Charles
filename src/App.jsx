@@ -16,6 +16,7 @@ import UserManagement from "./Component/User/User.jsx";
 import Invitations from "./Component/Invitations/Invitations.jsx";
 import Projectmanagement from "./Component/Project/Project.jsx";
 import ReportsAnalytics from "./Component/Report/Report.jsx";
+import TaskPage from "./Component/Task/TaskPage.jsx";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -47,6 +48,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
+           {/* <Route path="/invitations" element={< Invitations/>} /> */}
          
           {/* Add other public routes here if needed */}
         </Routes>
@@ -67,6 +69,8 @@ function App() {
                <Route path="/invitations" element={< Invitations/>} />
                <Route path="/project" element={< Projectmanagement/>} />
                <Route path="/report" element={< ReportsAnalytics/>} />
+              <Route path="/task" element={<TaskPage/>} />
+              
               {/* Add other routes here */}
             </Routes>
           </div>

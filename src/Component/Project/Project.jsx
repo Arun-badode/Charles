@@ -95,8 +95,8 @@ const Projectmanagement = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="project-mgmt-bg min-vh-100 p-3">
-      <div className="container py-4">
+    <div className="project-mgmt-bg min-vh-100 ">
+      <div className="container-flud py-4 p-5">
         <div className="d-flex flex-wrap justify-content-between align-items-center mb-3">
           <div>
             <h4 className="fw-bold mb-0">Project Management</h4>

@@ -6,12 +6,14 @@ const Navbar = ({ toggleSidebar }) => {
   return (
     <>
       <nav className="navbar navbar-light">
-        <div className="container nav-conte">
+        <div className="container nav-conte ">
           <div className="nav-content">
-            <div className="nav-bran">
-              <h1 className="nav-brand" >
+            <div className="nav-bran ">
+               <div className="bg-primary text-white fw-bold px-2 py-1 rounded me-2 mb-2">PM</div>
+              <h2 className="nav-brand" >
+                
                Project Manageme
-              </h1>
+              </h2>
               <div className="nav-taggle-icon" onClick={toggleSidebar}>
                 <a href="#">
                   <i className="fa fa-bars" aria-hidden="true"></i>

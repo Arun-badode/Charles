@@ -263,7 +263,7 @@ const columns = [
 ];
 
 const Dashboard = () => (
-  <div className="dashboard-kanban-bg p-3 p-md-4">
+  <div className="dashboard-kanban-bg p-5">
     <div className="container-fluid">
       {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">

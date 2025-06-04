@@ -37,7 +37,7 @@ const Login = () => {
               required
             />
           </div>
-          <Link to="/invitations">
+          <Link to="/dashboard">
             <button type="submit" className="btn btn-primary w-100 mb-3">
               Sign in
             </button>
