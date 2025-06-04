@@ -13,7 +13,11 @@ import LandingPage from "./components/Landing/LandingPage.jsx";
 import AdminDashboard from "./Component/AdminDashboard/AdminDashboard.jsx";
 import ClientManagement from "./Component/Client/Client.jsx";
 import UserManagement from "./Component/User/User.jsx";
+import Invitations from "./Component/Invitations/Invitations.jsx";
+import Projectmanagement from "./Component/Project/Project.jsx";
+import ReportsAnalytics from "./Component/Report/Report.jsx";
 import TaskPage from "./Component/Task/TaskPage.jsx";
+import SettingsPage from "./Component/Settings/SettingsPage.jsx";
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -63,7 +67,13 @@ function App() {
               {/* <Route path="/project" element={< ProjectCalendar/>} /> */}
               <Route path="/user" element={< UserManagement/>} />
               
+               <Route path="/invitations" element={< Invitations/>} />
+               <Route path="/project" element={< Projectmanagement/>} />
+               <Route path="/report" element={< ReportsAnalytics/>} />
               <Route path="/task" element={<TaskPage/>} />
+              <Route path="/setting" element={<SettingsPage/>} />
+
+
               
               {/* Add other routes here */}
             </Routes>

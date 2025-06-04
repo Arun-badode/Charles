@@ -31,7 +31,7 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
     };
 
   return (
-    <div className={`sidebar-container ${collapsed ? "collapsed" : ""}`}>
+    <div className={`sidebar-container  ${collapsed ? "collapsed" : ""}`}>
       <div className="sidebar">
         <ul className="menu">
           {/* Dashboard Section */}
@@ -88,13 +88,13 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               className="menu-link menu-i"
               onClick={() => {navigate("/kkk"); menuItemClick();} } >
              <span> <BiBarChartAlt /></span>
-              <span className="Analytics">Analytics</span>
+              <span className="Analytics">File</span>
             </div>
           </li>
-          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/report") ? "active" : ""}`}>
             <div
               className="menu-link menu-i"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/report"); menuItemClick();} } >
               <span><FaTv /></span>
               <span className="Reports">Reports</span>
             </div>
@@ -102,7 +102,7 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
           <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
             <div
               className="menu-link menu-i d-flex"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/setting"); menuItemClick();} } >
              <span><CiSettings /></span>
               <span className="Settings">Settings</span>
             </div>

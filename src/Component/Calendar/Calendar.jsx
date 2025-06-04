@@ -13,7 +13,7 @@ const Calendar = () => {
   };
 
   return (
-    <div className="container-fluid p-4">
+    <div className="container-fluid p-5">
       {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3 gap-2">
         <div>
@@ -90,18 +90,18 @@ const Calendar = () => {
       </div>
 
       {/* Month Navigation + Add Task */}
-      <div className="d-flex flex-column flex-md-row justify-content-between align-items-stretch align-items-md-center mb-3 gap-2">
-        <h6 className="fw-bold mb-0">← June 2025 →</h6>
-        <div className="d-flex align-items-center gap-2">
-          <input type="text" placeholder="Search" className="form-control form-control-sm" />
-          <button
-            className="btn btn-primary btn-sm "
-            type="button"
-            onClick={openModal}
-          >
-            + Add Task
-          </button>
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3 gap-2">
+        <div className="d-flex align-items-center gap-2 mb-2 mb-md-0">
+          <h6 className="fw-bold mb-0">← June 2025 →</h6>
+          <input type="text" placeholder="Search" className="form-control form-control-sm ms-2" style={{ maxWidth: "180px" }} />
         </div>
+        <button
+          className="btn btn-primary btn-sm"
+          type="button"
+          onClick={openModal}
+        >
+          + Add Task
+        </button>
       </div>
 
       {/* Calendar Grid */}
