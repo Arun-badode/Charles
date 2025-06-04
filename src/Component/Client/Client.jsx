@@ -111,7 +111,7 @@ const ClientManagement = () => {
 
   // Responsive modals and table
   return (
-    <div className="container mt-4">
+    <div className="container mt-4 p-4">
       {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3 gap-2">
         <div>

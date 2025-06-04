@@ -1,0 +1,141 @@
+.project-mgmt-bg {
+  background: #f7f8fa;
+  min-height: 100vh;
+}
+
+.project-table th,
+.project-table td {
+  border: none;
+  background: transparent;
+  vertical-align: top;
+}
+
+.project-row:not(:last-child) td {
+  border-bottom: 1.5px solid #ececec;
+}
+
+.project-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  background: #f3f4f6;
+}
+
+.progress-bar-gray {
+  background-color: #e5e7eb !important;
+}
+.progress-bar-purple {
+  background-color: #a259e6 !important;
+}
+.progress-bar-green {
+  background-color: #22c55e !important;
+}
+.progress-bar-red {
+  background-color: #ef4444 !important;
+}
+.progress-bar-blue {
+  background-color: #2563eb !important;
+}
+
+.badge-success {
+  background: #e6f9ed;
+  color: #19b45b;
+  font-weight: 500;
+}
+.badge-warning {
+  background: #fff7e6;
+  color: #f59e42;
+  font-weight: 500;
+}
+.badge-danger {
+  background: #ffeaea;
+  color: #ef4444;
+  font-weight: 500;
+}
+.badge-primary {
+  background: #e6f0ff;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.search-group .form-control,
+.search-group .input-group-text {
+  border-radius: 8px;
+  border-color: #ececec;
+  background: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .project-table th,
+  .project-table td {
+    font-size: 0.97rem;
+    padding: 0.5rem 0.3rem;
+  }
+  .project-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1.1rem;
+  }
+}
+
+
+
+/* ...existing styles... */
+
+.project-modal {
+  border-radius: 18px;
+  box-shadow: 0 2px 16px 0 rgba(80, 80, 180, 0.10);
+  background: #fff;
+}
+
+.project-modal .modal-header {
+  border-bottom: none;
+}
+
+.project-modal .modal-footer {
+  border-top: none;
+}
+
+.project-modal .form-label {
+  font-weight: 500;
+}
+
+.project-modal .form-control,
+.project-modal .form-select {
+  border-radius: 8px;
+  border: 1.5px solid #ececec;
+  background: #fafbfc;
+  font-size: 1rem;
+}
+
+.project-modal .btn-primary {
+  background: #6c47ff;
+  border: none;
+  font-weight: 500;
+}
+
+.project-modal .btn-light {
+  background: #f3f4f6;
+  color: #222;
+  border: none;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 44, 80, 0.15);
+  z-index: 1040;
+}
+
+@media (max-width: 575.98px) {
+  .modal-dialog {
+    margin: 1rem;
+  }
+  .project-modal {
+    padding: 0.5rem;
+  }
+}

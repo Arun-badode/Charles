@@ -79,7 +79,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div className="container py-4">
+    <div className="container py-4 p-5">
       <h5 className="fw-semibold mb-4">User Management</h5>
 
       {/* Stat Cards */}
