@@ -90,6 +90,9 @@ const phaseOptions = [
 
 const Projectmanagement = () => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [modalMode, setModalMode] = useState(""); // "view" | "edit" | ""
+  const [projectList, setProjectList] = useState(projects); // for delete
 
   return (
     <div className="project-mgmt-bg min-vh-100">
@@ -153,32 +156,56 @@ const Projectmanagement = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {projects.map((proj, idx) => (
+                      {projectList.map((proj, idx) => (
                         <tr key={proj.name} className="project-row">
                           <td>
-                            <div className="d-flex align-items-center mb-1">
+                            <div className="d-flex align-items-center mb-1 mt-2">
                               <span className={`project-icon me-2 ${proj.progressClass}`}>
                                 <i className={`bi ${proj.typeIcon}`}></i>
                               </span>
                               <span className="fw-semibold">{proj.name}</span>
                             </div>
-                            <div className="d-flex flex-wrap align-items-center gap-2 small text-muted">
+                            <div className="d-flex flex-wrap align-items-center gap-2 small text-muted mt-1">
                               <span>Type: {proj.type}</span>
                               <span className={`badge ${proj.statusClass}`}>{proj.status}</span>
                             </div>
                           </td>
-                          <td>{proj.phase}</td>
-                          <td className={proj.status === "Delayed" ? "text-danger" : ""}>{proj.deadline}</td>
-                          <td>{proj.created}</td>
+                          <td><div className="mt-3">{proj.phase}</div></td>
+                          <td className={proj.status === "Delayed" ? "text-dark" : ""}> <div className="mt-3">{proj.deadline}</div></td>
+                          <td> <div className="mt-3">{proj.created}</div></td>
                           <td className="text-end">
-                            <button className="btn btn-sm btn-link p-1" title="View">
-                              <i className="bi bi-eye-fill text-primary fs-4"></i>
+                            <button
+                              className="btn btn-sm btn-link p-1 mt-2"
+                              title="View"
+                              onClick={() => {
+                                setSelectedProject(proj);
+                                setModalMode("view");
+                                setShowModal(true);
+                              }}
+                            >
+                              <i className="bi bi-eye-fill text-primary fs-5"></i>
                             </button>
-                            <button className="btn btn-sm btn-link p-1" title="Edit">
-                              <i className="bi bi-pencil-square text-success fs-4"></i>
+                            <button
+                              className="btn btn-sm btn-link p-1 mt-2"
+                              title="Edit"
+                              onClick={() => {
+                                setSelectedProject(proj);
+                                setModalMode("edit");
+                                setShowModal(true);
+                              }}
+                            >
+                              <i className="bi bi-pencil-square text-success fs-5"></i>
                             </button>
-                            <button className="btn btn-sm btn-link p-1" title="Delete">
-                              <i className="bi bi-trash-fill text-danger fs-4"></i>
+                            <button
+                              className="btn btn-sm btn-link p-1 mt-2"
+                              title="Delete"
+                              onClick={() => {
+                                if (window.confirm("Are you sure you want to delete this project?")) {
+                                  setProjectList(projectList.filter((p) => p !== proj));
+                                }
+                              }}
+                            >
+                              <i className="bi bi-trash-fill text-danger fs-5"></i>
                             </button>
                           </td>
                         </tr>
@@ -220,71 +247,195 @@ const Projectmanagement = () => {
               <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                   <div className="modal-header border-0">
-                    <h5 className="modal-title fw-bold">Create New Project</h5>
+                    <h5 className="modal-title fw-bold">
+                      {modalMode === "view"
+                        ? "View Project"
+                        : modalMode === "edit"
+                        ? "Edit Project"
+                        : "Create New Project"}
+                    </h5>
                     <button
                       type="button"
                       className="btn-close"
-                      onClick={() => setShowModal(false)}
+                      onClick={() => {
+                        setShowModal(false);
+                        setSelectedProject(null);
+                        setModalMode("");
+                      }}
                       aria-label="Close"
                     ></button>
                   </div>
-
                   <div className="modal-body">
-                    <form>
-                      <div className="mb-3">
-                        <label className="form-label fw-semibold">Project Name</label>
-                        <input type="text" className="form-control" placeholder="Enter project name" />
+                    {modalMode === "view" && selectedProject ? (
+                      <div className="project-view-details">
+                        <h5 className="mb-4">📄 Project Details</h5>
+                        <div className="row">
+                          <div className="col-md-6 mb-3">
+                            <label className="form-label fw-semibold">Project Name</label>
+                            <div className="form-control-plaintext">{selectedProject.name}</div>
+                          </div>
+                          <div className="col-md-6 mb-3">
+                            <label className="form-label fw-semibold">Project Type</label>
+                            <div className="form-control-plaintext">{selectedProject.type}</div>
+                          </div>
+                          <div className="col-md-6 mb-3">
+                            <label className="form-label fw-semibold">Status</label>
+                            <div className="form-control-plaintext">{selectedProject.status}</div>
+                          </div>
+                          <div className="col-md-6 mb-3">
+                            <label className="form-label fw-semibold">Phase</label>
+                            <div className="form-control-plaintext">{selectedProject.phase}</div>
+                          </div>
+                          <div className="col-md-6 mb-3">
+                            <label className="form-label fw-semibold">Deadline</label>
+                            <div className="form-control-plaintext">{selectedProject.deadline}</div>
+                          </div>
+                          <div className="col-md-6 mb-3">
+                            <label className="form-label fw-semibold">Created</label>
+                            <div className="form-control-plaintext">{selectedProject.created}</div>
+                          </div>
+                          <div className="col-12 mb-3">
+                            <label className="form-label fw-semibold">Description</label>
+                            <div className="form-control-plaintext">
+                              {selectedProject.description || "-"}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-
-                      <div className="mb-3">
-                        <label className="form-label fw-semibold">Project Type</label>
-                        <select className="form-select">
-                          <option>Select type</option>
-                          {projectTypes.map((type, i) => (
-                            <option key={i}>{type}</option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="mb-3">
-                        <label className="form-label fw-semibold">Status</label>
-                        <select className="form-select">
-                          <option>Select status</option>
-                          {statusOptions.map((status, i) => (
-                            <option key={i}>{status}</option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="mb-3">
-                        <label className="form-label fw-semibold">Phase</label>
-                        <select className="form-select">
-                          <option>Select phase</option>
-                          {phaseOptions.map((phase, i) => (
-                            <option key={i}>{phase}</option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div className="mb-3">
-                        <label className="form-label fw-semibold">Deadline</label>
-                        <input type="date" className="form-control" placeholder="mm/dd/yyyy" />
-                      </div>
-
-                      <div className="mb-3">
-                        <label className="form-label fw-semibold">Description</label>
-                        <textarea className="form-control" rows="3" placeholder="Enter project description"></textarea>
-                      </div>
-                    </form>
+                    ) : modalMode === "edit" && selectedProject ? (
+                      <form>
+                        <div className="mb-3">
+                          <label className="form-label fw-semibold">Project Name</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            value={selectedProject?.name || ""}
+                            onChange={(e) =>
+                              setSelectedProject({
+                                ...selectedProject,
+                                name: e.target.value,
+                              })
+                            }
+                            placeholder="Enter project name"
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label fw-semibold">Project Type</label>
+                          <select
+                            className="form-select"
+                            value={selectedProject?.type || ""}
+                            onChange={(e) =>
+                              setSelectedProject({
+                                ...selectedProject,
+                                type: e.target.value,
+                              })
+                            }
+                          >
+                            <option value="">Select type</option>
+                            {projectTypes.map((type, i) => (
+                              <option key={i} value={type}>{type}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label fw-semibold">Status</label>
+                          <select
+                            className="form-select"
+                            value={selectedProject?.status || ""}
+                            onChange={(e) =>
+                              setSelectedProject({
+                                ...selectedProject,
+                                status: e.target.value,
+                              })
+                            }
+                          >
+                            <option value="">Select status</option>
+                            {statusOptions.map((status, i) => (
+                              <option key={i} value={status}>{status}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label fw-semibold">Phase</label>
+                          <select
+                            className="form-select"
+                            value={selectedProject?.phase || ""}
+                            onChange={(e) =>
+                              setSelectedProject({
+                                ...selectedProject,
+                                phase: e.target.value,
+                              })
+                            }
+                          >
+                            <option value="">Select phase</option>
+                            {phaseOptions.map((phase, i) => (
+                              <option key={i} value={phase}>{phase}</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label fw-semibold">Deadline</label>
+                          <input
+                            type="date"
+                            className="form-control"
+                            value={selectedProject?.deadline || ""}
+                            onChange={(e) =>
+                              setSelectedProject({
+                                ...selectedProject,
+                                deadline: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <label className="form-label fw-semibold">Description</label>
+                          <textarea
+                            className="form-control"
+                            rows="3"
+                            value={selectedProject?.description || ""}
+                            onChange={(e) =>
+                              setSelectedProject({
+                                ...selectedProject,
+                                description: e.target.value,
+                              })
+                            }
+                            placeholder="Enter project description"
+                          ></textarea>
+                        </div>
+                      </form>
+                    ) : null}
                   </div>
 
                   <div className="modal-footer border-0">
-                    <button type="button" className="btn btn-light" onClick={() => setShowModal(false)}>
+                    <button
+                      type="button"
+                      className="btn btn-light"
+                      onClick={() => {
+                        setShowModal(false);
+                        setSelectedProject(null);
+                        setModalMode("");
+                      }}
+                    >
                       Cancel
                     </button>
-                    <button type="button" className="btn btn-primary">
-                      Create Project
-                    </button>
+                    {modalMode === "edit" && (
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={() => {
+                          setProjectList((prev) =>
+                            prev.map((p) =>
+                              p.name === selectedProject.name ? selectedProject : p
+                            )
+                          );
+                          setShowModal(false);
+                          setSelectedProject(null);
+                          setModalMode("");
+                        }}
+                      >
+                        Save Changes
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
