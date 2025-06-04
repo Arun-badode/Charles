@@ -6,7 +6,7 @@ const Navbar = ({ toggleSidebar }) => {
   return (
     <>
       <nav className="navbar navbar-light">
-        <div className="container nav-conte ">
+        <div className="container-flud nav-conte ">
           <div className="nav-content">
             <div className="nav-bran ">
                <div className="bg-primary text-white fw-bold px-2 py-1 rounded me-2 mb-2">PM</div>
