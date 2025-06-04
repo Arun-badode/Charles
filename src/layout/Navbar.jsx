@@ -14,7 +14,7 @@ const Navbar = ({ toggleSidebar }) => {
               <div className="bg-primary text-white fw-bold px-2 py-1 rounded me-2 mb-2">PM</div>
 
               {/* Show only on medium and larger screens */}
-              <h2 className="nav-brand mb-0 d-none d-md-block">Project Manageme</h2>
+              <h2 className="nav-brand mb-0 d-none d-md-block">Project Management</h2>
 
               <div className="nav-taggle-icon ms-3" onClick={toggleSidebar}>
                 <a href="#">
