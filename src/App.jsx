@@ -84,6 +84,7 @@ function App() {
 
 
               <Route path="/help" element={<HelpCenterPage/>} />
+              
 
               
               {/* Add other routes here */}
