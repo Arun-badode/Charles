@@ -11,8 +11,7 @@ const Navbar = ({ toggleSidebar }) => {
             <div className="nav-bran ">
                <div className="bg-primary text-white fw-bold px-2 py-1 rounded me-2 mb-2">PM</div>
               <h2 className="nav-brand" >
-                
-               Project Manageme
+               Project Management
               </h2>
               <div className="nav-taggle-icon" onClick={toggleSidebar}>
                 <a href="#">
