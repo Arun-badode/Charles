@@ -12,10 +12,50 @@ import {
 } from "react-bootstrap";
 import { FaCamera, FaUserCircle } from "react-icons/fa";
 
+const teamMembersInitial = [
+  {
+    initials: "JD",
+    name: "John Davis",
+    email: "john.davis@example.com",
+    role: "Admin",
+    status: "Active",
+    badgeClass: "bg-primary-subtle text-primary",
+  },
+  {
+    initials: "SM",
+    name: "Sarah Miller",
+    email: "sarah.miller@example.com",
+    role: "Designer",
+    status: "Active",
+    badgeClass: "bg-danger-subtle text-danger",
+  },
+  {
+    initials: "RJ",
+    name: "Robert Johnson",
+    email: "robert.johnson@example.com",
+    role: "Developer",
+    status: "Inactive",
+    badgeClass: "bg-primary-subtle text-primary",
+  },
+];
+
 const SettingsPage = () => {
   // Modal state
   const [showAddMember, setShowAddMember] = useState(false);
   const [memberForm, setMemberForm] = useState({
+    name: "",
+    email: "",
+    role: "Developer",
+    status: "Active",
+  });
+
+  // Team members state for edit
+  const [teamMembers, setTeamMembers] = useState(teamMembersInitial);
+
+  // Edit modal state
+  const [showEditMember, setShowEditMember] = useState(false);
+  const [editMemberIdx, setEditMemberIdx] = useState(null);
+  const [editMemberForm, setEditMemberForm] = useState({
     name: "",
     email: "",
     role: "Developer",
@@ -31,7 +71,25 @@ const SettingsPage = () => {
   };
 
   const handleAddMember = () => {
-    // Add member logic here if needed
+    // Add member logic
+    setTeamMembers([
+      ...teamMembers,
+      {
+        initials: memberForm.name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")
+          .toUpperCase(),
+        name: memberForm.name,
+        email: memberForm.email,
+        role: memberForm.role,
+        status: memberForm.status,
+        badgeClass:
+          memberForm.role === "Designer"
+            ? "bg-danger-subtle text-danger"
+            : "bg-primary-subtle text-primary",
+      },
+    ]);
     setShowAddMember(false);
     setMemberForm({
       name: "",
@@ -39,6 +97,48 @@ const SettingsPage = () => {
       role: "Developer",
       status: "Active",
     });
+  };
+
+  // Edit modal handlers
+  const handleEditClick = (idx) => {
+    setEditMemberIdx(idx);
+    setEditMemberForm({
+      name: teamMembers[idx].name,
+      email: teamMembers[idx].email,
+      role: teamMembers[idx].role,
+      status: teamMembers[idx].status,
+    });
+    setShowEditMember(true);
+  };
+
+  const handleEditMemberFormChange = (e) => {
+    const { name, value } = e.target;
+    setEditMemberForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleEditMemberSave = () => {
+    const updated = [...teamMembers];
+    updated[editMemberIdx] = {
+      ...updated[editMemberIdx],
+      name: editMemberForm.name,
+      email: editMemberForm.email,
+      role: editMemberForm.role,
+      status: editMemberForm.status,
+      initials: editMemberForm.name
+        .split(" ")
+        .map((n) => n[0])
+        .join("")
+        .toUpperCase(),
+      badgeClass:
+        editMemberForm.role === "Designer"
+          ? "bg-danger-subtle text-danger"
+          : "bg-primary-subtle text-primary",
+    };
+    setTeamMembers(updated);
+    setShowEditMember(false);
   };
 
   return (
@@ -209,72 +309,45 @@ const SettingsPage = () => {
                               </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>
-                                  <div className="d-flex align-items-center gap-2">
-                                    <span className="badge rounded-circle bg-primary-subtle text-primary fw-semibold p-3">
-                                      JD
+                              {teamMembers.map((member, idx) => (
+                                <tr key={idx}>
+                                  <td>
+                                    <div className="d-flex align-items-center gap-2">
+                                      <span
+                                        className={`badge rounded-circle ${member.badgeClass} fw-semibold p-3`}
+                                      >
+                                        {member.initials}
+                                      </span>
+                                      {member.name}
+                                    </div>
+                                  </td>
+                                  <td>{member.email}</td>
+                                  <td>{member.role}</td>
+                                  <td>
+                                    <span
+                                      className={`badge ${
+                                        member.status === "Active"
+                                          ? "bg-success-subtle text-success"
+                                          : "bg-secondary-subtle text-secondary"
+                                      }`}
+                                    >
+                                      {member.status}
                                     </span>
-                                    John Davis
-                                  </div>
-                                </td>
-                                <td>john.davis@example.com</td>
-                                <td>Admin</td>
-                                <td>
-                                  <span className="badge bg-success-subtle text-success">
-                                    Active
-                                  </span>
-                                </td>
-                                <td>
-                                  <a href="#" className="text-decoration-none">
-                                    Edit
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div className="d-flex align-items-center gap-2">
-                                    <span className="badge rounded-circle bg-danger-subtle text-danger fw-semibold p-3">
-                                      SM
-                                    </span>
-                                    Sarah Miller
-                                  </div>
-                                </td>
-                                <td>sarah.miller@example.com</td>
-                                <td>Designer</td>
-                                <td>
-                                  <span className="badge bg-success-subtle text-success">
-                                    Active
-                                  </span>
-                                </td>
-                                <td>
-                                  <a href="#" className="text-decoration-none">
-                                    Edit
-                                  </a>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <div className="d-flex align-items-center gap-2">
-                                    <span className="badge rounded-circle bg-primary-subtle text-primary fw-semibold p-3">
-                                      RJ
-                                    </span>
-                                    Robert Johnson
-                                  </div>
-                                </td>
-                                <td>robert.johnson@example.com</td>
-                                <td>Developer</td>
-                                <td>
-                                  <span className="badge bg-secondary-subtle text-secondary">
-                                    Inactive
-                                  </span>
-                                </td>
-                                <td>
-                                  <a href="#" className="text-decoration-none">
-                                    Edit
-                                  </a>
-                                </td>
-                              </tr>
+                                  </td>
+                                  <td>
+                                    <a
+                                      href="#"
+                                      className="text-decoration-none"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        handleEditClick(idx);
+                                      }}
+                                    >
+                                      Edit
+                                    </a>
+                                  </td>
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
                         </div>
@@ -482,10 +555,71 @@ const SettingsPage = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Edit Team Member Modal */}
+      <Modal show={showEditMember} onHide={() => setShowEditMember(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Team Member</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={editMemberForm.name}
+                onChange={handleEditMemberFormChange}
+                placeholder="Enter name"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={editMemberForm.email}
+                onChange={handleEditMemberFormChange}
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Role</Form.Label>
+              <Form.Select
+                name="role"
+                value={editMemberForm.role}
+                onChange={handleEditMemberFormChange}
+              >
+                <option>Developer</option>
+                <option>Designer</option>
+                <option>Manager</option>
+                <option>Admin</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Status</Form.Label>
+              <Form.Select
+                name="status"
+                value={editMemberForm.status}
+                onChange={handleEditMemberFormChange}
+              >
+                <option>Active</option>
+                <option>Inactive</option>
+              </Form.Select>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="light" onClick={() => setShowEditMember(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleEditMemberSave}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
-
-// Badge + Toggle component (Designed by Readdy)
 
 export default SettingsPage;
