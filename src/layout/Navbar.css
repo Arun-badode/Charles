@@ -1,13 +1,10 @@
 .navbar{
+  position: fixed !important;
   background-color: rgb(224, 224, 224);
+ 
+  z-index: 999;
+  
 }
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px; /* Adjust as per your Navbar height */
-  z-index: 1000;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
+
+
+

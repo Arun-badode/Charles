@@ -36,6 +36,7 @@ const plans = [
     buttonStyle: 'btn-primary',
   },
 ];
+
 const LandingPage = () => {
     const features = [
   {
@@ -110,8 +111,9 @@ const LandingPage = () => {
         </div>
       </div>
     </section>
-    <section>
-          <div className="text-center mb-5">
+    <div className="custom-container py-5">
+      {/* Header */}
+      <div className="text-center mb-5">
         <h2 className="fw-bold">Simple, Transparent Pricing</h2>
         <p className="text-muted">Choose the plan that works best for your business.</p>
       </div>
@@ -119,20 +121,23 @@ const LandingPage = () => {
       {/* Cards */}
       <div className="row justify-content-center g-4">
         {plans.map((plan, index) => (
-          <div key={index} className="col-md-6 col-lg-5">
-            <div className={`pricing-card position-relative ${plan.badge ? 'border-primary shadow' : ''}`}>
+          <div key={index} className="col-12 col-md-6 col-lg-5 d-flex">
+            <div className={`pricing-card position-relative w-100 h-100 d-flex flex-column justify-content-between ${plan.badge ? 'border-primary shadow' : ''}`}>
               {plan.badge && (
                 <span className="badge-popular">{plan.badge}</span>
               )}
-              <h4 className="fw-bold text-center">{plan.name}</h4>
-              <h2 className="fw-bold text-center">
-                {plan.price}<span className="fs-6 text-muted">{plan.billingCycle}</span>
-              </h2>
-              <ul className="list-unstyled mt-4">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="text-success">✔ {feature}</li>
-                ))}
-              </ul>
+              <div>
+                <h4 className="fw-bold text-center">{plan.name}</h4>
+                <h2 className="fw-bold text-center">
+                  {plan.price}
+                  <span className="fs-6 text-muted">{plan.billingCycle}</span>
+                </h2>
+                <ul className="feature-list list-unstyled mt-4">
+                  {plan.features.map((feature, i) => (
+                    <li key={i}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
               <button className={`btn ${plan.buttonStyle} w-100 mt-4`}>
                 Get Started
               </button>
@@ -140,7 +145,7 @@ const LandingPage = () => {
           </div>
         ))}
       </div>
-    </section>
+    </div>
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 
-
 const progressData = [
   {
     name: "Website Redesign",
@@ -39,14 +38,6 @@ const donutSegments = [
   { color: "#22c55e", value: 35 }, // Completed
   { color: "#f59e42", value: 20 }, // Overdue
 ];
-
-  const onDragEnd = (result) => {
-    if (!result.destination) return;
-    const newOrder = Array.from(columnOrder);
-    const [removed] = newOrder.splice(result.source.index, 1);
-    newOrder.splice(result.destination.index, 0, removed);
-    setColumnOrder(newOrder);
-  };
 
 const events = [
   {
@@ -136,9 +127,6 @@ const activities = [
     time: "Yesterday at 11:00 AM"
   }
 ];
-
-
-
 
 const tasks = {
   todo: [
@@ -274,234 +262,282 @@ const columns = [
   }
 ];
 
-
-
 const Dashboard = () => (
-  <div className="dashboard-kanban-bg p-4">
+  <div className="dashboard-kanban-bg p-5">
     <div className="container-fluid">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <span className="fw-bold fs-4">Dashboard Widgets</span>
-          <span className="text-muted ms-2 small">Drag and drop to customize</span>
+      {/* Header */}
+      <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <div className="mb-3 mb-md-0">
+          <h1 className="h4 fw-bold mb-1">Dashboard Widgets</h1>
+          <p className="text-muted small mb-0">Drag and drop to customize</p>
         </div>
-        <div>
-          <button className="btn btn-primary me-2">+ Create Dashboard</button>
-          <button className="btn btn-outline-secondary">Add Widget</button>
+        <div className="d-flex flex-wrap gap-2">
+          <button className="btn btn-primary btn-sm">+ Create Dashboard</button>
+          <button className="btn btn-outline-secondary btn-sm">Add Widget</button>
         </div>
       </div>
 
-
-      
-
-
-
-
-
-
-      <div className="row g-4">
-        {columns.map((col) => (
-          <div className="col-lg-4" key={col.key}
-          >
-            <div className="card kanban-card">
-              <div className="card-header bg-white border-0 pb-1 d-flex align-items-center justify-content-between">
-                <div>
-                  <i className={`${col.icon} me-2`}></i>
-                  <span className="kanban-title">{col.title}</span>
-                  <span className="badge badge-light ms-2">{col.count}</span>
+      {/* Main Content */}
+      <div className="row g-3 g-md-4">
+        {/* Kanban Columns */}
+        <div className="col-12 col-lg-4">
+          <div className="card kanban-card h-100">
+            <div className="card-header bg-white border-0 pb-1 d-flex align-items-center justify-content-between">
+              <div>
+                <i className={`${columns[0].icon} me-2`}></i>
+                <span className="kanban-title">{columns[0].title}</span>
+                <span className="badge badge-light ms-2">{columns[0].count}</span>
+              </div>
+              <div>
+                <i className="bi bi-plus-lg text-muted me-2"></i>
+                <i className="bi bi-three-dots text-muted"></i>
+              </div>
+            </div>
+            <div className="card-body pt-2">
+              {tasks.todo.map((t, i) => (
+                <div className="kanban-task mb-3" key={i}>
+                  <div className="d-flex align-items-center mb-1">
+                    <span className={`badge ${t.labelColor} me-2`}>{t.label}</span>
+                    <span className="fw-semibold">{t.title}</span>
+                    <i className="bi bi-three-dots-vertical ms-auto text-muted"></i>
+                  </div>
+                  <div className="kanban-desc mb-2">{t.desc}</div>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="kanban-user-badge">{t.user}</span>
+                    <span className="text-muted small">{t.date}</span>
+                  </div>
                 </div>
-                <div>
-                  <i className="bi bi-plus-lg text-muted me-2"></i>
-                  <i className="bi bi-three-dots text-muted"></i>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 col-lg-4">
+          <div className="card kanban-card h-100">
+            <div className="card-header bg-white border-0 pb-1 d-flex align-items-center justify-content-between">
+              <div>
+                <i className={`${columns[1].icon} me-2`}></i>
+                <span className="kanban-title">{columns[1].title}</span>
+                <span className="badge badge-light ms-2">{columns[1].count}</span>
+              </div>
+              <div>
+                <i className="bi bi-plus-lg text-muted me-2"></i>
+                <i className="bi bi-three-dots text-muted"></i>
+              </div>
+            </div>
+            <div className="card-body pt-2">
+              {tasks.inprogress.map((t, i) => (
+                <div className="kanban-task mb-3" key={i}>
+                  <div className="d-flex align-items-center mb-1">
+                    <span className={`badge ${t.labelColor} me-2`}>{t.label}</span>
+                    <span className="fw-semibold">{t.title}</span>
+                    <i className="bi bi-three-dots-vertical ms-auto text-muted"></i>
+                  </div>
+                  <div className="kanban-desc mb-2">{t.desc}</div>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="kanban-user-badge">{t.user}</span>
+                    <span className="text-muted small">{t.date}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 col-lg-4">
+          <div className="card kanban-card h-100">
+            <div className="card-header bg-white border-0 pb-1 d-flex align-items-center justify-content-between">
+              <div>
+                <i className={`${columns[2].icon} me-2`}></i>
+                <span className="kanban-title">{columns[2].title}</span>
+                <span className="badge badge-light ms-2">{columns[2].count}</span>
+              </div>
+              <div>
+                <i className="bi bi-plus-lg text-muted me-2"></i>
+                <i className="bi bi-three-dots text-muted"></i>
+              </div>
+            </div>
+            <div className="card-body pt-2">
+              {tasks.completed.map((t, i) => (
+                <div className="kanban-task mb-3" key={i}>
+                  <div className="d-flex align-items-center mb-1">
+                    <span className={`badge ${t.labelColor} me-2`}>{t.label}</span>
+                    <span className="fw-semibold">{t.title}</span>
+                    <i className="bi bi-three-dots-vertical ms-auto text-muted"></i>
+                  </div>
+                  <div className="kanban-desc mb-2">{t.desc}</div>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="kanban-user-badge">{t.user}</span>
+                    <span className="text-muted small">{t.date}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Project Progress and Task Distribution */}
+        <div className="col-12 col-md-6">
+          <div className="card h-100 project-progress-card">
+            <div className="card-body">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h5 className="h5 fw-bold mb-0">Project Progress</h5>
+                <i className="bi bi-three-dots-vertical text-muted"></i>
+              </div>
+              {progressData.map((proj) => (
+                <div className="mb-3" key={proj.name}>
+                  <div className="d-flex justify-content-between align-items-center mb-1">
+                    <span className="fw-semibold">{proj.name}</span>
+                    <span className="fw-bold">{proj.percent}%</span>
+                  </div>
+                  <div className="progress project-progress-bar custom-progress-height">
+                    <div
+                      className={`progress-bar ${proj.color}`}
+                      role="progressbar"
+                      style={{ width: `${proj.percent}%` }}
+                      aria-valuenow={proj.percent}
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                </div>
+              ))}
+              <div className="d-flex flex-wrap justify-content-start align-items-center mt-3 gap-3 gap-md-4">
+                <span className="text-primary fw-bold">2</span>
+                <span className="text-success fw-bold">5</span>
+                <span className="text-warning fw-bold">1</span>
+                <span className="text-muted ms-2">Active</span>
+                <span className="text-muted">Completed</span>
+                <span className="text-muted">Delayed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-12 col-md-6">
+          <div className="card h-100 task-distribution-card">
+            <div className="card-body">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h5 className="h5 fw-bold mb-0">Task Distribution</h5>
+                <i className="bi bi-three-dots-vertical text-muted"></i>
+              </div>
+              <ul className="list-unstyled mb-4">
+                {taskStatus.map((status) => (
+                  <li className="d-flex align-items-center mb-2" key={status.label}>
+                    <span className={`me-2 ${status.color}`}>
+                      <i className="bi bi-circle-fill"></i>
+                    </span>
+                    <span className="me-auto">{status.label}</span>
+                    <span className="fw-semibold">{status.count} tasks</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="d-flex justify-content-center align-items-center">
+                <div className="donut-chart">
+                  <svg width="110" height="110" viewBox="0 0 42 42" className="donut">
+                    <circle className="donut-ring" cx="21" cy="21" r="15.9155" fill="transparent" stroke="#e5e7eb" strokeWidth="3" />
+                    <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
+                      stroke="#2563eb" strokeWidth="3" strokeDasharray="25 75" strokeDashoffset="0"/>
+                    <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
+                      stroke="#a259e6" strokeWidth="3" strokeDasharray="20 80" strokeDashoffset="-25"/>
+                    <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
+                      stroke="#22c55e" strokeWidth="3" strokeDasharray="35 65" strokeDashoffset="-45"/>
+                    <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
+                      stroke="#f59e42" strokeWidth="3" strokeDasharray="20 80" strokeDashoffset="-80"/>
+                  </svg>
                 </div>
               </div>
-              <div className="card-body pt-2">
-                {tasks[col.key].map((t, i) => (
-                  <div className="kanban-task mb-3" key={i}>
-                    <div className="d-flex align-items-center mb-1">
-                      <span className={`badge ${t.labelColor} me-2`}>{t.label}</span>
-                      <span className="fw-semibold">{t.title}</span>
-                      <i className="bi bi-three-dots-vertical ms-auto text-muted"></i>
+              <div className="d-flex justify-content-center gap-3 mt-3 flex-wrap">
+                <span className="legend-dot bg-primary"></span>
+                <span className="legend-label">Pending</span>
+                <span className="legend-dot" style={{ background: "#a259e6" }}></span>
+                <span className="legend-label">In Progress</span>
+                <span className="legend-dot bg-success"></span>
+                <span className="legend-label">Completed</span>
+                <span className="legend-dot" style={{ background: "#f59e42" }}></span>
+                <span className="legend-label">Overdue</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Activity */}
+        <div className="col-12">
+          <div className="card activity-card">
+            <div className="card-body">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <span className="activity-title">Recent Activity</span>
+                <a href="#" className="activity-viewall text-dark">View all</a>
+                <i className="bi bi-three-dots text-muted ms-2"></i>
+              </div>
+              <ul className="list-unstyled mb-0">
+                {activities.map((a, i) => (
+                  <li className="d-flex align-items-start mb-3" key={i}>
+                    <span className={a.icon + " me-3"}></span>
+                    <div>
+                      <div className="activity-text">{a.text}</div>
+                      <div className="activity-time">{a.time}</div>
                     </div>
-                    <div className="kanban-desc mb-2">{t.desc}</div>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <span className="kanban-user-badge">{t.user}</span>
-                      <span className="text-muted small">{t.date}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Calendar */}
+        <div className="col-12">
+          <div className="card calendar-card">
+            <div className="card-body">
+              <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
+                <span className="calendar-title mb-2 mb-md-0">Calendar Overview</span>
+                <div className="d-flex">
+                  <button className="calendar-btn">Day</button>
+                  <button className="calendar-btn calendar-btn-active ms-2">Week</button>
+                  <button className="calendar-btn ms-2">Month</button>
+                </div>
+              </div>
+              <div className="calendar-date-range text-center mb-3">
+                June 3 - June 9, 2025
+              </div>
+              <div className="d-flex flex-wrap justify-content-between align-items-center calendar-days mb-2">
+                <i className="bi bi-chevron-left text-muted"></i>
+                {days.map((d, i) => (
+                  <div className="calendar-day text-center flex-fill" key={i}>
+                    <div className="calendar-day-label">{d.label}</div>
+                    <div className="calendar-day-date">{d.date}</div>
+                  </div>
+                ))}
+                <i className="bi bi-chevron-right text-muted"></i>
+              </div>
+              <div className="calendar-events">
+                {events.map((e, i) => (
+                  <div className={`calendar-event ${e.color} d-flex flex-column flex-md-row align-items-start align-items-md-center mb-2`} key={i}>
+                    <div className="calendar-event-bar"></div>
+                    <div className="calendar-event-content flex-grow-1">
+                      <div className="calendar-event-title">{e.title}</div>
+                      <div className="calendar-event-time">{e.time}</div>
+                    </div>
+                    <div className="calendar-event-users d-flex align-items-center ms-md-auto mt-2 mt-md-0">
+                      {e.users && e.users.map((u, j) => (
+                        <span className={`calendar-user-badge ${u.color} me-1`} key={j}>{u.name}</span>
+                      ))}
+                      {e.designed && (
+                        <div className="calendar-designed-by ms-3">
+                          <span className="badge badge-grey me-1">Designed by</span>
+                          <span className="badge badge-grey">
+                            <i className="bi bi-triangle-fill text-purple me-1"></i>
+                            Readdy
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        ))}
-
-        <div className="container py-4">
-    <div className="row g-4">
-      {/* Project Progress */}
-     <div className="col-12 col-md-6 mb-4 mb-md-0">
-  <div className="card h-100 project-progress-card">
-    <div className="card-body">
-      <div className="d-flex justify-content-between align-items-center mb-2">
-        <h5 className="fw-bold mb-0">Project Progress</h5>
-        <i className="bi bi-three-dots-vertical text-muted"></i>
-      </div>
-      <div className="mb-4"></div>
-      {progressData.map((proj) => (
-        <div className="mb-4" key={proj.name}>
-          <div className="d-flex justify-content-between align-items-center mb-1">
-            <span className="fw-semibold">{proj.name}</span>
-            <span className="fw-bold">{proj.percent}%</span>
-          </div>
-          <div className="progress project-progress-bar custom-progress-height">
-            <div
-              className={`progress-bar ${proj.color}`}
-              role="progressbar"
-              style={{ width: `${proj.percent}%` }}
-              aria-valuenow={proj.percent}
-              aria-valuemin="0"
-              aria-valuemax="100"
-            ></div>
-          </div>
         </div>
-      ))}
-      <div className="d-flex flex-wrap justify-content-start align-items-center mt-3 gap-3 gap-md-4">
-        <span className="text-primary fw-bold">2</span>
-        <span className="text-success fw-bold">5</span>
-        <span className="text-warning fw-bold">1</span>
-        <span className="text-muted ms-2">Active</span>
-        <span className="text-muted">Completed</span>
-        <span className="text-muted">Delayed</span>
-      </div>
-    </div>
-  </div>
-</div>
-      {/* Task Distribution */}
-      <div className="col-lg-6">
-        <div className="card h-100 task-distribution-card">
-          <div className="card-body">
-            <div className="d-flex justify-content-between align-items-center mb-2">
-              <h5 className="fw-bold mb-0">Task Distribution</h5>
-              <i className="bi bi-three-dots-vertical text-muted"></i>
-            </div>
-            <div className="mb-4"></div>
-            <ul className="list-unstyled mb-4">
-              {taskStatus.map((status) => (
-                <li className="d-flex align-items-center mb-2" key={status.label}>
-                  <span className={`me-2 ${status.color}`}>
-                    <i className="bi bi-circle-fill"></i>
-                  </span>
-                  <span className="me-auto">{status.label}</span>
-                  <span className="fw-semibold">{status.count} tasks</span>
-                </li>
-              ))}
-            </ul>
-            <div className="d-flex justify-content-center align-items-center">
-              <div className="donut-chart">
-                <svg width="110" height="110" viewBox="0 0 42 42" className="donut">
-                  <circle className="donut-ring" cx="21" cy="21" r="15.9155" fill="transparent" stroke="#e5e7eb" strokeWidth="3" />
-                  {/* Pending */}
-                  <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
-                    stroke="#2563eb" strokeWidth="3" strokeDasharray="25 75" strokeDashoffset="0"/>
-                  {/* In Progress */}
-                  <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
-                    stroke="#a259e6" strokeWidth="3" strokeDasharray="20 80" strokeDashoffset="-25"/>
-                  {/* Completed */}
-                  <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
-                    stroke="#22c55e" strokeWidth="3" strokeDasharray="35 65" strokeDashoffset="-45"/>
-                  {/* Overdue */}
-                  <circle className="donut-segment" cx="21" cy="21" r="15.9155" fill="transparent"
-                    stroke="#f59e42" strokeWidth="3" strokeDasharray="20 80" strokeDashoffset="-80"/>
-                </svg>
-              </div>
-            </div>
-            <div className="d-flex justify-content-center gap-3 mt-3 flex-wrap">
-              <span className="legend-dot bg-primary"></span>
-              <span className="legend-label">Pending</span>
-              <span className="legend-dot" style={{ background: "#a259e6" }}></span>
-              <span className="legend-label">In Progress</span>
-              <span className="legend-dot bg-success"></span>
-              <span className="legend-label">Completed</span>
-              <span className="legend-dot" style={{ background: "#f59e42" }}></span>
-              <span className="legend-label">Overdue</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div className="card activity-card mt-4">
-    <div className="card-body">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <span className="activity-title">Recent Activity</span>
-        <a href="#" className="activity-viewall text-dark">View all</a>
-        <i className="bi bi-three-dots text-muted ms-2"></i>
-      </div>
-      <ul className="list-unstyled mb-0">
-        {activities.map((a, i) => (
-          <li className="d-flex align-items-start mb-3" key={i}>
-            <span className={a.icon + " me-3"}></span>
-            <div>
-              <div className="activity-text">{a.text}</div>
-              <div className="activity-time">{a.time}</div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-
-
-
-
-      <div className="card calendar-card mt-4">
-  <div className="card-body">
-    <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
-      <span className="calendar-title mb-2 mb-md-0">Calendar Overview</span>
-      <div>
-        <button className="calendar-btn">Day</button>
-        <button className="calendar-btn calendar-btn-active ms-2">Week</button>
-        <button className="calendar-btn ms-2">Month</button>
-      </div>
-    </div>
-    <div className="calendar-date-range text-center mb-3">
-      June 3 - June 9, 2025
-    </div>
-    <div className="d-flex flex-wrap justify-content-between align-items-center calendar-days mb-2">
-      <i className="bi bi-chevron-left text-muted"></i>
-      {days.map((d, i) => (
-        <div className="calendar-day text-center flex-fill" key={i}>
-          <div className="calendar-day-label">{d.label}</div>
-          <div className="calendar-day-date">{d.date}</div>
-        </div>
-      ))}
-      <i className="bi bi-chevron-right text-muted"></i>
-    </div>
-    <div className="calendar-events">
-      {events.map((e, i) => (
-        <div className={`calendar-event ${e.color} d-flex flex-column flex-md-row align-items-start align-items-md-center mb-2`} key={i}>
-          <div className="calendar-event-bar"></div>
-          <div className="calendar-event-content flex-grow-1">
-            <div className="calendar-event-title">{e.title}</div>
-            <div className="calendar-event-time">{e.time}</div>
-          </div>
-          <div className="calendar-event-users d-flex align-items-center ms-md-auto mt-2 mt-md-0">
-            {e.users && e.users.map((u, j) => (
-              <span className={`calendar-user-badge ${u.color} me-1`} key={j}>{u.name}</span>
-            ))}
-            {e.designed && (
-              <div className="calendar-designed-by ms-3">
-                <span className="badge badge-grey me-1">Designed by</span>
-                <span className="badge badge-grey">
-                  <i className="bi bi-triangle-fill text-purple me-1"></i>
-                  Readdy
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
       </div>
     </div>
   </div>

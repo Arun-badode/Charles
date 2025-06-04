@@ -111,7 +111,7 @@ const ClientManagement = () => {
 
   // Responsive modals and table
   return (
-    <div className="container mt-4">
+    <div className="container-flud  p-5">
       {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3 gap-2">
         <div>
@@ -119,9 +119,7 @@ const ClientManagement = () => {
           <div className="text-muted small">Client Management / View</div>
         </div>
         <div className="d-flex align-items-center gap-2">
-          <button className="btn btn-light border d-flex align-items-center gap-1">
-            <i className="bi bi-grid-fill text-secondary"></i> Grid View
-          </button>
+         
           <button className="btn btn-light border d-flex align-items-center gap-1">
             <i className="bi bi-box-arrow-up-right text-secondary"></i> Export
           </button>

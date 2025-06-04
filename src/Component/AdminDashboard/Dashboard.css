@@ -2,13 +2,74 @@
   background: #f7f9fb;
   min-height: 100vh;
 }
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .dashboard-kanban-bg {
+    padding: 1rem !important;
+  }
+  
+  .kanban-card {
+    min-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .kanban-title {
+    font-size: 1rem;
+  }
+  
+  .kanban-task {
+    padding: 0.75rem;
+  }
+  
+  .kanban-desc {
+    font-size: 0.9rem;
+  }
+  
+  .calendar-day {
+    min-width: 40px;
+  }
+  
+  .calendar-event {
+    padding: 0.75rem;
+  }
+  
+  .calendar-event-title {
+    font-size: 1rem;
+  }
+  
+  .activity-icon {
+    width: 2.8rem;
+    height: 2.4rem;
+    font-size: 1.3rem;
+  }
+  
+  .activity-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* Tablet view */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .kanban-card {
+    min-width: 100%;
+  }
+  
+  .kanban-title {
+    font-size: 1.05rem;
+  }
+}
+
 /* Make all columns and cards equal height */
 @media (min-width: 992px) {
   .dashboard-kanban-bg .row.g-4 > [class^="col-"] {
     display: flex;
     flex-direction: column;
   }
-  .dashboard-kanban-bg .kanban-card {
+  
+  .dashboard-kanban-bg .kanban-card,
+  .dashboard-kanban-bg .project-progress-card,
+  .dashboard-kanban-bg .task-distribution-card {
     height: 100%;
   }
 }
@@ -18,19 +79,8 @@
   border-radius: 18px;
   box-shadow: 0 2px 12px 0 rgba(80, 80, 180, 0.06);
   background: #fff;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  min-width: 480px;
-  max-width: 370px;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (max-width: 991.98px) {
-  .kanban-card {
-    min-width: 100%;
-    max-width: 100%;
-  }
 }
 
 .kanban-title {
@@ -46,8 +96,6 @@
   box-shadow: 0 1px 4px 0 rgba(80, 80, 180, 0.04);
   margin-bottom: 1.1rem;
   border: 1px solid #ececec;
- 
-  
 }
 
 .kanban-desc {
@@ -55,6 +103,7 @@
   font-size: 0.97rem;
 }
 
+/* Badge colors */
 .badge-blue {
   background: #2563eb;
   color: #fff;
@@ -108,15 +157,7 @@
   letter-spacing: 0.5px;
 }
 
-.card-header {
-  border-bottom: none !important;
-}
-
-
-
-
-
-
+/* Activity Card */
 .activity-card {
   border: 1.5px solid #ececec;
   border-radius: 18px;
@@ -186,12 +227,7 @@
   color: #ec4899;
 }
 
-
-
-
-
-
-
+/* Calendar Card */
 .calendar-card {
   border: 1.5px solid #ececec;
   border-radius: 18px;
@@ -336,185 +372,8 @@
   font-weight: 500;
   box-shadow: 0 1px 4px 0 rgba(80, 80, 180, 0.04);
 }
-.badge-grey {
-  background: #e5e7eb;
-  color: #222;
-  font-weight: 500;
-  border-radius: 8px;
-  padding: 3px 10px;
-  font-size: 0.97rem;
-}
-.text-purple {
-  color: #a259e6 !important;
-}
 
-
-
-
-.calendar-card {
-  border: 1.5px solid #ececec;
-  border-radius: 18px;
-  box-shadow: 0 2px 12px 0 rgba(80, 80, 180, 0.06);
-  background: #fff;
-}
-
-.calendar-title {
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: #222;
-}
-
-.calendar-btn {
-  background: #f3f4f6;
-  border: none;
-  border-radius: 18px;
-  color: #222;
-  font-weight: 500;
-  padding: 4px 18px;
-  font-size: 1rem;
-  transition: background 0.2s;
-}
-.calendar-btn-active {
-  background: #4f46e5;
-  color: #fff;
-}
-
-.calendar-date-range {
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: #23263a;
-  margin-bottom: 0.5rem;
-}
-
-.calendar-days {
-  gap: 10px;
-}
-.calendar-day {
-  min-width: 44px;
-}
-.calendar-day-label {
-  color: #6b7280;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-.calendar-day-date {
-  color: #23263a;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.calendar-events {
-  margin-top: 18px;
-}
-.calendar-event {
-  border-radius: 12pxpx;
-  padding: 0.7rem 1.2rem 0.7rem 0.7rem;
-  position: relative;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-}
-.event-blue {
-  background: #eef4ff;
-}
-.event-green {
-  background: #f0fdf4;
-}
-.event-purple {
-  background: #f6f3fa;
-}
-.calendar-event-bar {
-  width: 5px;
-  height: 100%;
-  border-radius: 6px;
-  margin-right: 18px;
-  background: #4f46e5;
-}
-.event-green .calendar-event-bar {
-  background: #22c55e;
-}
-.event-purple .calendar-event-bar {
-  background: #a259e6;
-}
-.calendar-event-title {
-  font-weight: 600;
-  color: #23263a;
-  font-size: 1.08rem;
-}
-.calendar-event-time {
-  color: #6b7280;
-  font-size: 0.97rem;
-}
-
-.calendar-event-users {
-  min-width: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.calendar-user-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-size: 0.97rem;
-  font-weight: 500;
-  width: 32px;
-  height: 32px;
-  margin-left: 2px;
-  margin-right: 2px;
-  background: #e0e7ff;
-  color: #6366f1;
-}
-.user-badge-blue {
-  background: #e0e7ff;
-  color: #6366f1;
-}
-.user-badge-green {
-  background: #dcfce7;
-  color: #22c55e;
-}
-.user-badge-yellow {
-  background: #fef9c3;
-  color: #eab308;
-}
-.user-badge-red {
-  background: #fee2e2;
-  color: #ef4444;
-}
-
-.calendar-designed-by {
-  display: flex;
-  align-items: center;
-  background: #f3f4f6;
-  border-radius: 12px;
-  padding: 4px 14px;
-  font-size: 0.97rem;
-  font-weight: 500;
-  box-shadow: 0 1px 4px 0 rgba(80, 80, 180, 0.04);
-}
-.badge-grey {
-  background: #e5e7eb;
-  color: #222;
-  font-weight: 500;
-  border-radius: 8px;
-  padding: 3px 10px;
-  font-size: 0.97rem;
-}
-.text-purple {
-  color: #a259e6 !important;
-}
-
-
-
-
-
-
-
-/* Add at the end of your Dashboard.css */
-
+/* Progress Cards */
 .project-progress-card,
 .task-distribution-card {
   border: 1.5px solid #ececec;
@@ -558,11 +417,12 @@
   background-color: #a259e6 !important;
 }
 
-
-/* Add to Dashboard.css */
+/* Progress bar height */
 .custom-progress-height {
   height: 7px;
 }
+
+/* Responsive adjustments for progress cards */
 @media (max-width: 767.98px) {
   .project-progress-card {
     margin-bottom: 1.5rem;

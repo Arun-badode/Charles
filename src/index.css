@@ -201,3 +201,95 @@ body::-webkit-scrollbar {
   font-weight: 600;
 }
 
+
+/* Pricing card styles */
+.pricing-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Badge for most popular plan */
+.badge-popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2563eb;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Feature list */
+.feature-list li {
+  color: black;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+/* Green checkmark */
+.feature-list li::before {
+  content: '✔';
+  position: absolute;
+  left: 0;
+  color: green;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pricing-card {
+    padding: 1.5rem;
+  }
+
+  .feature-list li {
+    font-size: 0.95rem;
+  }
+
+  .badge-popular {
+    font-size: 0.65rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .pricing-card {
+    padding: 1rem;
+  }
+
+  .feature-list li {
+    font-size: 0.9rem;
+  }
+
+  .badge-popular {
+    font-size: 0.6rem;
+  }
+
+  .btn {
+    font-size: 0.85rem;
+  }
+}
+.custom-container {
+  max-width: 900px; /* Adjust width as needed */
+  margin: 0 auto;
+}
+
+
+
+
+

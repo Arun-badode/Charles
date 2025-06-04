@@ -84,7 +84,7 @@ const TaskPage = () => {
   const overdue = 4;
 
   return (
-    <div className="d-flex" style={{ minHeight: '100vh', background: '#f8fafc' }}>
+    <div className="contenair-flud d-flex p-4" style={{ minHeight: '100vh', background: '#f8fafc' }}>
       <div className="flex-grow-1 p-4">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <h4 className="fw-bold">Task Management</h4>
