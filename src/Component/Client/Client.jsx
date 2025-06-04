@@ -135,64 +135,76 @@ const ClientManagement = () => {
       {/* Tabs */}
       <div className="d-flex flex-wrap align-items-center gap-2 mb-3">
         <button
-          className={`btn btn-sm d-flex align-items-center gap-1 rounded ${
+          className={`btn btn-sm d-flex align-items-center justify-content-between gap-1 rounded position-relative ${
             activeTab === "All"
               ? "btn-primary text-white"
               : "btn-light border text-secondary"
           }`}
           onClick={() => setActiveTab("All")}
+          style={{ minWidth: 90 }}
         >
-          <span className="position-relative">
+          <span className="d-flex align-items-center">
             <i
               className={`bi bi-people-fill ${
                 activeTab === "All" ? "text-white" : "text-secondary"
               }`}
             ></i>
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-              {allCount}
-            </span>
+            <span className="ms-2">All</span>
           </span>
-          All
+          <span
+            className="position-absolute top-50 end-0 translate-middle-y badge rounded-pill bg-secondary"
+            style={{ right: 8 }}
+          >
+            {allCount}
+          </span>
         </button>
         <button
-          className={`btn btn-sm d-flex align-items-center gap-1 rounded ${
+          className={`btn btn-sm d-flex align-items-center justify-content-between gap-1 rounded position-relative ${
             activeTab === "Active"
               ? "btn-primary text-white"
               : "btn-light border text-secondary"
           }`}
           onClick={() => setActiveTab("Active")}
+          style={{ minWidth: 90 }}
         >
-          <span className="position-relative">
+          <span className="d-flex align-items-center">
             <i
               className={`bi bi-person-check-fill ${
                 activeTab === "Active" ? "text-white" : "text-secondary"
               }`}
             ></i>
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-              {activeCount}
-            </span>
+            <span className="ms-2">Active</span>
           </span>
-          Active
+          <span
+            className="position-absolute top-50 end-0 translate-middle-y badge rounded-pill bg-secondary"
+            style={{ right: 8 }}
+          >
+            {activeCount}
+          </span>
         </button>
         <button
-          className={`btn btn-sm d-flex align-items-center gap-1 rounded ${
+          className={`btn btn-sm d-flex align-items-center justify-content-between gap-1 rounded position-relative ${
             activeTab === "Inactive"
               ? "btn-primary text-white"
               : "btn-light border text-secondary"
           }`}
           onClick={() => setActiveTab("Inactive")}
+          style={{ minWidth: 100 }}
         >
-          <span className="position-relative">
+          <span className="d-flex align-items-center">
             <i
               className={`bi bi-person-x-fill ${
                 activeTab === "Inactive" ? "text-white" : "text-secondary"
               }`}
             ></i>
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
-              {inactiveCount}
-            </span>
+            <span className="ms-2">Inactive</span>
           </span>
-          Inactive
+          <span
+            className="position-absolute top-50 end-0 translate-middle-y badge rounded-pill bg-secondary"
+            style={{ right: 8 }}
+          >
+            {inactiveCount}
+          </span>
         </button>
       </div>
 
