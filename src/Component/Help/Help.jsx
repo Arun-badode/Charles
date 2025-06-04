@@ -32,7 +32,7 @@ const Help = () => {
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="hc-topic-card text-center">
                                 <div className="hc-topic-icon-circle mx-auto mb-2">
-                                    <BsListTask size={32} color="#5a6acf" />
+                                    <BsListTask size={25} color="#5a6acf" />
                                 </div>
                                 <h6 className="mb-0 fw-semibold">Task Management</h6>
                             </div>
@@ -40,7 +40,7 @@ const Help = () => {
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="hc-topic-card text-center">
                                 <div className="hc-topic-icon-circle mx-auto mb-2">
-                                    <BsPeople size={32} color="#5a6acf" />
+                                    <BsPeople size={25} color="#5a6acf" />
                                 </div>
                                 <h6 className="mb-0 fw-semibold">Team Collaboration</h6>
                             </div>
@@ -48,7 +48,7 @@ const Help = () => {
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="hc-topic-card text-center">
                                 <div className="hc-topic-icon-circle mx-auto mb-2">
-                                    <BsBarChart size={32} color="#5a6acf" />
+                                    <BsBarChart size={25} color="#5a6acf" />
                                 </div>
                                 <h6 className="mb-0 fw-semibold">Reports &amp; Analytics</h6>
                             </div>
@@ -56,7 +56,7 @@ const Help = () => {
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="hc-topic-card text-center">
                                 <div className="hc-topic-icon-circle mx-auto mb-2">
-                                    <BsGear size={32} color="#5a6acf" />
+                                    <BsGear size={25} color="#5a6acf" />
                                 </div>
                                 <h6 className="mb-0 fw-semibold">Account Settings</h6>
                             </div>
