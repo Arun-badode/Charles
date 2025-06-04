@@ -11,7 +11,7 @@ const Navbar = ({ toggleSidebar }) => {
             
             {/* Left Brand Section */}
             <div className="nav-bran d-flex align-items-center">
-              <div className="bg-primary text-white fw-bold px-2 py-1 rounded me-2 mb-2">PM</div>
+              <div className="bg-primary text-white fw-bold px-2 py-1 rounded me-2 ">PM</div>
 
               {/* Show only on medium and larger screens */}
               <h2 className="nav-brand mb-0 d-none d-md-block">Project Management</h2>
@@ -44,12 +44,11 @@ const Navbar = ({ toggleSidebar }) => {
                 </div>
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
-                    <Link className="dropdown-item" to="/">Update Profile</Link>
+                    <Link className="dropdown-item" to="/setting">Profile</Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item" to="/changepassword">Change Password</Link>
+                    <Link className="dropdown-item" to="/help">Help</Link>
                   </li>
-                  <li><hr className="dropdown-divider" /></li>
                   <li>
                     <Link className="dropdown-item" to="/">Logout</Link>
                   </li>

@@ -21,6 +21,7 @@ import FileManager from "./Component/File/File.jsx";
 
 import SettingsPage from "./Component/Settings/SettingsPage.jsx";
 import HelpCenterPage from "./Component/Help/Help.jsx";
+import RolesPermissions from "./Component/RolePermission/RolesPermissions.jsx";
 
 
 
@@ -79,6 +80,7 @@ function App() {
 
                <Route path="/file" element={<FileManager/>} />
 
+               <Route path="/rolepermission" element={<RolesPermissions/>} />
               <Route path="/setting" element={<SettingsPage/>} />
 
 

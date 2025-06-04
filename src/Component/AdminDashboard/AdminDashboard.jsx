@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { Modal, Button, Form, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
 
@@ -58,6 +59,7 @@ const events = [
     users: [
       { name: "SL", color: "user-badge-red" },
       { name: "TK", color: "user-badge-blue" }
+      
     ]
   },
   {
@@ -275,48 +277,143 @@ const columns = [
 const Dashboard = () => {
   const [tasks, setTasks] = useState(initialTasks);
 
+  // Modal state for adding/editing tasks
+  const [showTaskModal, setShowTaskModal] = useState(false);
+  const [modalColumn, setModalColumn] = useState("todo");
+  const [editTask, setEditTask] = useState(null);
+  const [taskForm, setTaskForm] = useState({
+    title: "",
+    desc: "",
+    label: "Design",
+    labelColor: "badge-blue",
+    user: "",
+    date: "",
+  });
+
+  // Dropdown state for 3-dots menu
+  const [dropdownOpen, setDropdownOpen] = useState({});
+  
+  // Open Add/Edit Task Modal
+  const handleShowTaskModal = (columnKey, task = null, idx = null) => {
+    setModalColumn(columnKey);
+    if (task) {
+      setEditTask({ ...task, idx });
+      setTaskForm({
+        title: typeof task.title === "string" ? task.title : "",
+        desc: typeof task.desc === "string" ? task.desc : "",
+        label: task.label,
+        labelColor: task.labelColor,
+        user: task.user,
+        date: task.date,
+      });
+    } else {
+      setEditTask(null);
+      setTaskForm({
+        title: "",
+        desc: "",
+        label: "Design",
+        labelColor: "badge-blue",
+        user: "",
+        date: "",
+      });
+    }
+    setShowTaskModal(true);
+  };
+
+  // Handle Add/Edit Task
+  const handleTaskFormChange = (e) => {
+    const { name, value } = e.target;
+    setTaskForm((prev) => ({
+      ...prev,
+      [name]: value,
+      labelColor:
+        name === "label"
+          ? value === "Design"
+            ? "badge-blue"
+            : value === "Development"
+            ? "badge-green"
+            : value === "Research"
+            ? "badge-purple"
+            : value === "Bug Fix"
+            ? "badge-red"
+            : value === "Marketing"
+            ? "badge-yellow"
+            : prev.labelColor
+          : prev.labelColor,
+    }));
+  };
+
+  const handleSaveTask = () => {
+    if (editTask) {
+      // Edit existing task
+      const updated = [...tasks[modalColumn]];
+      updated[editTask.idx] = {
+        ...updated[editTask.idx],
+        ...taskForm,
+      };
+      setTasks({ ...tasks, [modalColumn]: updated });
+    } else {
+      // Add new task
+      setTasks({
+        ...tasks,
+        [modalColumn]: [
+          ...tasks[modalColumn],
+          {
+            id: `task-${Date.now()}`,
+            ...taskForm,
+          },
+        ],
+      });
+    }
+    setShowTaskModal(false);
+  };
+
+  // Handle Delete Task
+  const handleDeleteTask = (columnKey, idx) => {
+    const updated = [...tasks[columnKey]];
+    updated.splice(idx, 1);
+    setTasks({ ...tasks, [columnKey]: updated });
+    setDropdownOpen({});
+  };
+
+  // Handle 3-dot dropdown open/close
+  const handleDropdownToggle = (columnKey, idx) => {
+    setDropdownOpen((prev) => ({
+      ...prev,
+      [`${columnKey}-${idx}`]: !prev[`${columnKey}-${idx}`],
+    }));
+  };
+
+  // Drag and drop logic (same as before)
   const onDragEnd = (result) => {
     const { source, destination } = result;
-
-    // Dropped outside the list
-    if (!destination) {
-      return;
-    }
-
-    // Same position
+    if (!destination) return;
     if (
       source.droppableId === destination.droppableId &&
       source.index === destination.index
     ) {
       return;
     }
-
     const start = source.droppableId;
     const finish = destination.droppableId;
-
-    // Moving within the same column
     if (start === finish) {
       const newTaskIds = Array.from(tasks[start]);
       const [removed] = newTaskIds.splice(source.index, 1);
       newTaskIds.splice(destination.index, 0, removed);
-
       setTasks({
         ...tasks,
-        [start]: newTaskIds
+        [start]: newTaskIds,
       });
       return;
     }
-
-    // Moving between columns
     const startTaskIds = Array.from(tasks[start]);
     const [removed] = startTaskIds.splice(source.index, 1);
     const finishTaskIds = Array.from(tasks[finish]);
     finishTaskIds.splice(destination.index, 0, removed);
-
     setTasks({
       ...tasks,
       [start]: startTaskIds,
-      [finish]: finishTaskIds
+      [finish]: finishTaskIds,
     });
   };
 
@@ -349,8 +446,13 @@ const Dashboard = () => {
                       <span className="badge badge-light ms-2">{tasks[column.key].length}</span>
                     </div>
                     <div>
-                      <i className="bi bi-plus-lg text-muted me-2"></i>
-                      <i className="bi bi-three-dots text-muted"></i>
+                      <i
+                        className="bi bi-plus-lg text-primary me-2"
+                        style={{ cursor: "pointer" }}
+                        title="Add Task"
+                        onClick={() => handleShowTaskModal(column.key)}
+                      ></i>
+                      
                     </div>
                   </div>
                   <Droppable droppableId={column.key}>
@@ -375,10 +477,29 @@ const Dashboard = () => {
                               >
                                 <div className="d-flex align-items-center mb-1">
                                   <span className={`badge ${task.labelColor} me-2`}>{task.label}</span>
-                                  <span className="fw-semibold">{task.title}</span>
-                                  <i className="bi bi-three-dots-vertical ms-auto text-muted"></i>
+                                  <span className="fw-semibold">{typeof task.title === "string" ? task.title : ""}</span>
+                                  <Dropdown show={dropdownOpen[`${column.key}-${index}`]} onToggle={() => handleDropdownToggle(column.key, index)} className="ms-auto">
+                                    <Dropdown.Toggle as="span" style={{ cursor: "pointer" }}>
+                                      <i className="bi bi-three-dots-vertical text-muted"></i>
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu align="end">
+                                      <Dropdown.Item
+                                        onClick={() => {
+                                          handleShowTaskModal(column.key, task, index);
+                                          setDropdownOpen({});
+                                        }}
+                                      >
+                                        Edit
+                                      </Dropdown.Item>
+                                      <Dropdown.Item
+                                        onClick={() => handleDeleteTask(column.key, index)}
+                                      >
+                                        Delete
+                                      </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                  </Dropdown>
                                 </div>
-                                <div className="kanban-desc mb-2">{task.desc}</div>
+                                <div className="kanban-desc mb-2">{typeof task.desc === "string" ? task.desc : ""}</div>
                                 <div className="d-flex justify-content-between align-items-center">
                                   <span className="kanban-user-badge">{task.user}</span>
                                   <span className="text-muted small">{task.date}</span>
@@ -560,6 +681,80 @@ const Dashboard = () => {
           </div>
         </DragDropContext>
       </div>
+
+      {/* Add/Edit Task Modal */}
+      <Modal show={showTaskModal} onHide={() => setShowTaskModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{editTask ? "Edit Task" : "Add Task"}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={taskForm.title}
+                onChange={handleTaskFormChange}
+                placeholder="Enter task title"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={2}
+                name="desc"
+                value={taskForm.desc}
+                onChange={handleTaskFormChange}
+                placeholder="Enter description"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Label</Form.Label>
+              <Form.Select
+                name="label"
+                value={taskForm.label}
+                onChange={handleTaskFormChange}
+              >
+                <option value="Design">Design</option>
+                <option value="Development">Development</option>
+                <option value="Research">Research</option>
+                <option value="Bug Fix">Bug Fix</option>
+                <option value="Marketing">Marketing</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>User</Form.Label>
+              <Form.Control
+                type="text"
+                name="user"
+                value={taskForm.user}
+                onChange={handleTaskFormChange}
+                placeholder="User initials (e.g. JD)"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Date</Form.Label>
+              <Form.Control
+                type="text"
+                name="date"
+                value={taskForm.date}
+                onChange={handleTaskFormChange}
+                placeholder="e.g. June 10"
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="light" onClick={() => setShowTaskModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSaveTask}>
+            {editTask ? "Save Changes" : "Add Task"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
