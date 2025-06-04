@@ -29,7 +29,7 @@ const TaskPage = () => {
   const totalTasks = 24, inProgress = 8, completed = 12, overdue = 4;
 
   return (
-    <Container fluid className="bg-light min-vh-100 p-3">
+    <Container fluid className=" min-vh-100 p-3">
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
         <h4 className="fw-bold">Task Management</h4>
       </div>

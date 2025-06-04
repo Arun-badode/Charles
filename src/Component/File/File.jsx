@@ -105,7 +105,7 @@ const FileManager = () => {
   const [gridView, setGridView] = useState(false); // start in grid mode
 
   return (
-    <div className="container-fluid bg-light p-5 min-vh-100">
+    <div className="container-fluid p-5 min-vh-100">
       {/* Heading + Breadcrumb */}
       <h3>File Management</h3>
       <nav aria-label="breadcrumb" className="mb-3">
