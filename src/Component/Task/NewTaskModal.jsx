@@ -91,8 +91,8 @@ const NewTaskModal = ({ show, handleClose }) => (
             <td>Sample Task</td>
             <td>Project 1</td>
             <td>
-              <i className="bi bi-eye me-3" role="button" title="View"></i>
-              <i className="bi bi-three-dots-vertical" role="button" title="More Options"></i>
+              <i className="bi bi-eye-fill text-primary  me-3" role="button" title="View"></i>
+              <i className="bi bi-trash-fill text-danger" role="button" title="Delete"></i>
             </td>
           </tr>
         </tbody>
