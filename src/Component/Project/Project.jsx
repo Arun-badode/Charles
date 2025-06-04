@@ -92,7 +92,69 @@ const Projectmanagement = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [modalMode, setModalMode] = useState(""); // "view" | "edit" | ""
-  const [projectList, setProjectList] = useState(projects); // for delete
+  const [projectList, setProjectList] = useState(projects);
+
+  // State for new project form
+  const [newProject, setNewProject] = useState({
+    name: "",
+    type: "",
+    status: "",
+    phase: "",
+    deadline: "",
+    description: "",
+  });
+
+  // Handle new project form change
+  const handleNewProjectChange = (e) => {
+    const { name, value } = e.target;
+    setNewProject((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Handle create project
+  const handleCreateProject = () => {
+    setProjectList([
+      ...projectList,
+      {
+        name: newProject.name,
+        type: newProject.type,
+        typeIcon:
+          newProject.type === "Infrastructure"
+            ? "bi-hdd-network"
+            : newProject.type === "Data Center"
+            ? "bi-database"
+            : newProject.type === "Cloud Services"
+            ? "bi-cloud"
+            : "bi-cpu",
+        status: newProject.status,
+        statusClass:
+          newProject.status === "Active"
+            ? "badge-success"
+            : newProject.status === "In Progress"
+            ? "badge-warning"
+            : newProject.status === "Delayed"
+            ? "badge-danger"
+            : "badge-primary",
+        phase: newProject.phase,
+        deadline: newProject.deadline,
+        created: new Date().toLocaleDateString(),
+        progress: 0,
+        progressClass: "progress-bar-gray",
+        description: newProject.description,
+      },
+    ]);
+    setShowModal(false);
+    setNewProject({
+      name: "",
+      type: "",
+      status: "",
+      phase: "",
+      deadline: "",
+      description: "",
+    });
+  };
 
   return (
     <div className="project-mgmt-bg min-vh-100">
@@ -116,7 +178,10 @@ const Projectmanagement = () => {
                 </button>
                 <button
                   className="btn btn-primary fw-semibold ms-2"
-                  onClick={() => setShowModal(true)}
+                  onClick={() => {
+                    setShowModal(true);
+                    setModalMode("create");
+                  }}
                 >
                   <i className="bi bi-plus-lg me-2"></i>New Project
                 </button>
@@ -239,6 +304,105 @@ const Projectmanagement = () => {
             </div>
           </div>
         </div>
+
+        {/* Modal */}
+        {showModal && modalMode === "create" && (
+          <>
+            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+              <Modal.Header closeButton>
+                <Modal.Title>Create New Project</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Project Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="name"
+                      value={newProject.name}
+                      onChange={handleNewProjectChange}
+                      placeholder="Enter project name"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Project Type</Form.Label>
+                    <Form.Select
+                      name="type"
+                      value={newProject.type}
+                      onChange={handleNewProjectChange}
+                    >
+                      <option value="">Select type</option>
+                      {projectTypes.map((type, i) => (
+                        <option key={i} value={type}>
+                          {type}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Status</Form.Label>
+                    <Form.Select
+                      name="status"
+                      value={newProject.status}
+                      onChange={handleNewProjectChange}
+                    >
+                      <option value="">Select status</option>
+                      {statusOptions.map((status, i) => (
+                        <option key={i} value={status}>
+                          {status}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Phase</Form.Label>
+                    <Form.Select
+                      name="phase"
+                      value={newProject.phase}
+                      onChange={handleNewProjectChange}
+                    >
+                      <option value="">Select phase</option>
+                      {phaseOptions.map((phase, i) => (
+                        <option key={i} value={phase}>
+                          {phase}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Deadline</Form.Label>
+                    <Form.Control
+                      type="date"
+                      name="deadline"
+                      value={newProject.deadline}
+                      onChange={handleNewProjectChange}
+                      placeholder="mm/dd/yyyy"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      name="description"
+                      value={newProject.description}
+                      onChange={handleNewProjectChange}
+                      placeholder="Enter project description"
+                    />
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="light" onClick={() => setShowModal(false)}>
+                  Cancel
+                </Button>
+                <Button variant="primary" onClick={handleCreateProject}>
+                  Create Project
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
+        )}
 
         {/* Modal */}
         {showModal && (
