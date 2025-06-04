@@ -38,7 +38,7 @@ const starter = [];
 
 const FileManager = () => {
   const [files, setFiles] = useState(starter);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
   const [dragOver, setDragOver] = useState(false);
@@ -169,9 +169,9 @@ const FileManager = () => {
                 <div className="card-footer d-flex justify-content-between align-items-center">
                   <span className="badge bg-light text-dark">{f.task}</span>
                   <div className="d-flex gap-2">
-                    <FaDownload className="text-primary" role="button" />
+                    <FaDownload className="text-secondary" role="button" />
                     <FaClock className="text-secondary" role="button" />
-                    <FaEllipsisV className="text-muted" role="button" />
+                    <FaEllipsisV className="text-secondary" role="button" />
                   </div>
                 </div>
               </div>
@@ -211,9 +211,9 @@ const FileManager = () => {
                   <td>{f.version}</td>
                   <td>
                     <div className="d-flex gap-2">
-                      <FaDownload className="text-primary" role="button" />
+                      <FaDownload className="text-secondary" role="button" />
                       <FaClock className="text-secondary" role="button" />
-                      <FaEllipsisV className="text-muted" role="button" />
+                      <FaEllipsisV className="text-secondary" role="button" />
                     </div>
                   </td>
                 </tr>
