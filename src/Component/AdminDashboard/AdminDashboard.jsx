@@ -57,6 +57,7 @@ const events = [
     users: [
       { name: "SL", color: "user-badge-red" },
       { name: "TK", color: "user-badge-blue" }
+      
     ]
   },
   {
@@ -522,15 +523,7 @@ const Dashboard = () => (
                       {e.users && e.users.map((u, j) => (
                         <span className={`calendar-user-badge ${u.color} me-1`} key={j}>{u.name}</span>
                       ))}
-                      {e.designed && (
-                        <div className="calendar-designed-by ms-3">
-                          <span className="badge badge-grey me-1">Designed by</span>
-                          <span className="badge badge-grey">
-                            <i className="bi bi-triangle-fill text-purple me-1"></i>
-                            Readdy
-                          </span>
-                        </div>
-                      )}
+                      
                     </div>
                   </div>
                 ))}
