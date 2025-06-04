@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Row,
@@ -8,10 +8,39 @@ import {
   Nav,
   Tab,
   Card,
+  Modal,
 } from "react-bootstrap";
 import { FaCamera, FaUserCircle } from "react-icons/fa";
 
 const SettingsPage = () => {
+  // Modal state
+  const [showAddMember, setShowAddMember] = useState(false);
+  const [memberForm, setMemberForm] = useState({
+    name: "",
+    email: "",
+    role: "Developer",
+    status: "Active",
+  });
+
+  const handleMemberFormChange = (e) => {
+    const { name, value } = e.target;
+    setMemberForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleAddMember = () => {
+    // Add member logic here if needed
+    setShowAddMember(false);
+    setMemberForm({
+      name: "",
+      email: "",
+      role: "Developer",
+      status: "Active",
+    });
+  };
+
   return (
     <Container fluid className="py-4">
       <Row className="justify-content-center">
@@ -135,7 +164,6 @@ const SettingsPage = () => {
                     </div>
                   </Tab.Pane>
 
-                  {/* Other Tabs */}
                   <Tab.Pane eventKey="workspace">
                     {/* Organization Details */}
                     <h5 className="mb-3">Organization Details</h5>
@@ -161,7 +189,11 @@ const SettingsPage = () => {
                     <Card className="mb-4">
                       <Card.Body className="p-0">
                         <div className="d-flex justify-content-end p-3">
-                          <Button variant="primary" size="sm">
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            onClick={() => setShowAddMember(true)}
+                          >
                             + Add Member
                           </Button>
                         </div>
@@ -387,6 +419,69 @@ const SettingsPage = () => {
           </Card>
         </Col>
       </Row>
+
+      {/* Add New Team Member Modal */}
+      <Modal show={showAddMember} onHide={() => setShowAddMember(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Team Member</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={memberForm.name}
+                onChange={handleMemberFormChange}
+                placeholder="Enter name"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={memberForm.email}
+                onChange={handleMemberFormChange}
+                placeholder="Enter email"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Role</Form.Label>
+              <Form.Select
+                name="role"
+                value={memberForm.role}
+                onChange={handleMemberFormChange}
+              >
+                <option>Developer</option>
+                <option>Designer</option>
+                <option>Manager</option>
+                <option>Admin</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Status</Form.Label>
+              <Form.Select
+                name="status"
+                value={memberForm.status}
+                onChange={handleMemberFormChange}
+              >
+                <option>Active</option>
+                <option>Inactive</option>
+              </Form.Select>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="light" onClick={() => setShowAddMember(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleAddMember}>
+            Add Member
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
