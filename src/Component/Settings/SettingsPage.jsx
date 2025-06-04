@@ -15,7 +15,7 @@ const SettingsPage = () => {
   return (
     <Container fluid className="py-4">
       <Row className="justify-content-center">
-        <Col md={10}>
+        <Col md={11}>
           <h3 className="mb-4">Settings</h3>
           <Card>
             <Card.Body>

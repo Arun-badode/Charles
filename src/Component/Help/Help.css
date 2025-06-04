@@ -1,4 +1,4 @@
- .hc-header {
+.hc-header {
      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
      color: white;
      padding: 2rem 0;
@@ -258,4 +258,22 @@
      .hc-message-form {
          padding: 1.5rem;
      }
+ }
+
+ /* Make both support cards the same height */
+ .row.g-4 {
+   align-items: stretch;
+ }
+
+ .hc-support-section,
+ .hc-message-form {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   background: #fff;
+   border-radius: 12px;
+   /* Stronger shadow */
+   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+   padding: 32px 24px;
  }
