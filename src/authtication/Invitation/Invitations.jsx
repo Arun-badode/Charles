@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Invitations.css";
+import { Link } from "react-router-dom";
 
 const Invitations = () => (
   <div className="invite-bg">
@@ -29,12 +30,15 @@ const Invitations = () => (
                 placeholder="Enter invitation token"
               />
             </div>
-            <button
+          
+           <Link to="/invitation">
+            <button 
               type="submit"
               className="btn btn-invite  w-100 mb-3"
             >
               Check Token
             </button>
+           </Link>
           </form>
           <div className="text-center">
             <div className="invite-link text-muted mb-2">Check by Email</div>

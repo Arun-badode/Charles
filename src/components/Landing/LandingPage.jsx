@@ -74,7 +74,7 @@ const LandingPage = () => {
           <h5 className="m-0">ProjectManager Pro</h5>
         </div>
         <div className="d-none d-md-flex align-items-center gap-3">
-          <a href="/signin" className="text-dark text-decoration-none">Sign In</a>
+          <a href="/login" className="text-dark text-decoration-none">Sign In</a>
           <a href="/login" className="btn btn-primary">Get Started</a>
         </div>
       </nav>
@@ -88,8 +88,8 @@ const LandingPage = () => {
           Streamline your projects, manage teams across organizations, and boost productivity with our AI-powered platform designed for modern businesses.
         </p>
         <div className="d-flex gap-3 flex-wrap justify-content-center">
-          <a href="/start-trial" className="btn btn-primary px-4">Start Free Trial</a>
-          <a href="/signin" className="btn btn-outline-secondary px-4">Sign In</a>
+          <a href="/dashboard" className="btn btn-primary px-4">Start Free Trial</a>
+          <a href="/login" className="btn btn-outline-secondary px-4">Sign In</a>
         </div>
       </div>
        <section className="bg-light py-5">

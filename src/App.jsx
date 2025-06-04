@@ -13,7 +13,6 @@ import LandingPage from "./components/Landing/LandingPage.jsx";
 import AdminDashboard from "./Component/AdminDashboard/AdminDashboard.jsx";
 import ClientManagement from "./Component/Client/Client.jsx";
 import UserManagement from "./Component/User/User.jsx";
-import Invitations from "./Component/Invitations/Invitations.jsx";
 import Projectmanagement from "./Component/Project/Project.jsx";
 import ReportsAnalytics from "./Component/Report/Report.jsx";
 import TaskPage from "./Component/Task/TaskPage.jsx";
@@ -22,6 +21,9 @@ import FileManager from "./Component/File/File.jsx";
 import SettingsPage from "./Component/Settings/SettingsPage.jsx";
 import HelpCenterPage from "./Component/Help/Help.jsx";
 import RolesPermissions from "./Component/RolePermission/RolesPermissions.jsx";
+import CheckInvitations from "./authtication/CheckInvitations.jsx";
+import License from "./authtication/Invitation/License.jsx";
+import Invitations from "./authtication/Invitation/Invitations.jsx";
 
 
 
@@ -43,6 +45,8 @@ function App() {
     location.pathname === "/" ||
     location.pathname === "/login" ||
     location.pathname === "/signup" ||
+     location.pathname === "/invitation"||
+     location.pathname === "/license"||
      location.pathname === "/invitations";
 
   return (
@@ -55,6 +59,10 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
+           <Route path="/invitation" element={<CheckInvitations />} />
+           <Route path="/license" element={<License />} />
+           <Route path="/invitations" element={<Invitations />} />
+
            {/* <Route path="/invitations" element={< Invitations/>} /> */}
          
           {/* Add other public routes here if needed */}

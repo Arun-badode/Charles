@@ -45,7 +45,7 @@ const Login = () => {
         </form>
 
         <div className="text-center">
-          <a href="#" className="d-block mb-2 small text-primary">
+          <a href="/invitations" className="d-block mb-2 small text-primary">
             Check for Invitations
           </a>
           <a href="#" className="small text-primary">
