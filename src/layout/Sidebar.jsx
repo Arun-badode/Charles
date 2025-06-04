@@ -109,10 +109,10 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               <span className="Help">Help</span>
             </div>
           </li>
-          <li className={`menu-item ${isActive("/role") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/rolepermission") ? "active" : ""}`}>
             <div
               className="menu-link menu-i d-flex"
-              onClick={() => {navigate("/role"); menuItemClick();} } >
+              onClick={() => {navigate("/rolepermission"); menuItemClick();} } >
              <span><FaCriticalRole /></span>
               <span className="Role">Role</span>
             </div>
