@@ -70,9 +70,6 @@ const Help = () => {
                 <div className="hc-support-section">
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <h3 className="hc-section-title mb-0">Frequently Asked Questions</h3>
-                        <small className="text-muted">
-                            Designed by <i className="fas fa-robot" /> Buddy
-                        </small>
                     </div>
                     <div className="accordion" id="faqAccordion">
                         <div className="hc-faq-item">
