@@ -96,7 +96,7 @@
   transform: rotate(360deg);
 }
 .menu-item.active .menu-link {
-  background-color: #578E7E; /* Highlight active menu item */
+  background-color: #7cad9f; /* Highlight active menu item */
   color: white; /* Active text color */
   border-radius: 12px;
 }
@@ -107,7 +107,7 @@
 }
 
 .submenu-item.active {
-  background-color: #578E7E;
+  background-color: #69b9a3;
   color: white;
   border-radius: 12px;
   padding-left: 20px;
@@ -191,6 +191,15 @@
   color: rgb(218, 14, 194);
 }
 .sidebar-container.collapsed .menu .Help{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.Role{
+  margin-left: 10px;
+  color: rgb(3, 114, 155);
+}
+.sidebar-container.collapsed .menu .Role{
   opacity: 0;
   visibility: hidden;
 }

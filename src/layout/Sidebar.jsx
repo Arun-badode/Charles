@@ -11,6 +11,7 @@ import { FaTv } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
 import { FaRegFileAlt } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
+import { FaCriticalRole } from "react-icons/fa";
 
 const Sidebar = ({ collapsed , menuItemClick}) => {
   const [openSubmenu, setOpenSubmenu] = useState(null); // Tracks the open submenu
@@ -112,11 +113,11 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
             <div
               className="menu-link menu-i d-flex"
               onClick={() => {navigate("/role"); menuItemClick();} } >
-             <span><FaRegFileAlt /></span>
+             <span><FaCriticalRole /></span>
               <span className="Role">Role</span>
             </div>
           </li>
-          <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
+          <li className={`menu-item ${isActive("/setting") ? "active" : ""}`}>
             <div
               className="menu-link menu-i d-flex"
               onClick={() => {navigate("/setting"); menuItemClick();} } >

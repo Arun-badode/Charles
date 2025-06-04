@@ -1,7 +1,21 @@
+// TaskPage.jsx
 import React, { useState } from 'react';
-import { Button, Table, Badge, Row, Col, Card, Container } from 'react-bootstrap';
+import {
+  Button,
+  Table,
+  Badge,
+  Row,
+  Col,
+  Card,
+  Container,
+  Modal,
+  Form
+} from 'react-bootstrap';
 import NewTaskModal from './NewTaskModal';
 
+/* ------------------------------------------------------------------ */
+/*  Dummy data                                                        */
+/* ------------------------------------------------------------------ */
 const tasks = [
   { task: 'Get stuff done', project: 'Secure payify.co - SSO website', status: 'Pending', priority: 'Low', assignedTo: '', dueDate: '' },
   { task: 'Task1', project: 'Migrate app', status: 'In Progress', priority: 'Low', assignedTo: '', dueDate: '5/28/2025' },
@@ -13,23 +27,53 @@ const tasks = [
 ];
 
 const statusVariant = {
-  'Pending': 'warning',
+  Pending: 'warning',
   'In Progress': 'info',
-  'Completed': 'success'
+  Completed: 'success'
 };
 
 const priorityVariant = {
-  'Low': 'info',
-  'Medium': 'warning',
-  'High': 'danger'
+  Low: 'info',
+  Medium: 'warning',
+  High: 'danger'
 };
 
+/* ================================================================== */
+/*  TaskPage Component                                                */
+/* ================================================================== */
 const TaskPage = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);      // "New Task" modal
+  const [viewModal, setViewModal] = useState(false);      // View-details modal
+  const [editModal, setEditModal] = useState(false);      // Edit modal
+  const [selected, setSelected] = useState(null);         // Task to view
+  const [editTask, setEditTask] = useState(null);         // Editable copy
+
   const totalTasks = 24, inProgress = 8, completed = 12, overdue = 4;
 
+  const handleView = (task) => {
+    setSelected(task);
+    setViewModal(true);
+  };
+
+  const handleEdit = (task) => {
+    setEditTask({ ...task });
+    setEditModal(true);
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditTask((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSave = () => {
+    /*  In a real app, update backend / state here.
+        Dummy data is constant, so we just close modal. */
+    setEditModal(false);
+  };
+
   return (
-    <Container fluid className=" min-vh-100 p-3">
+    <Container fluid className="min-vh-100 p-3">
+      {/* Header */}
       <div className="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
         <h4 className="fw-bold">Task Management</h4>
       </div>
@@ -71,10 +115,7 @@ const TaskPage = () => {
           <div className="d-flex flex-wrap gap-2">
             <Button variant="outline-primary" size="sm">
               <i className="bi bi-download me-1"></i> Export
-            </Button>
-            <Button variant="outline-primary" size="sm">
-              <i className="bi bi-grid-3x3-gap me-1"></i> Grid
-            </Button>
+            </Button>   
             <Button variant="primary" size="sm" onClick={() => setShowModal(true)}>
               + New Task
             </Button>
@@ -116,7 +157,18 @@ const TaskPage = () => {
                 <td>{task.assignedTo || 'Unassigned'}</td>
                 <td>{task.dueDate || 'No due date'}</td>
                 <td>
-                  <i className="bi bi-eye-fill text-primary me-3" role="button" title="View"></i>
+                  <i
+                    className="bi bi-eye-fill text-primary me-3"
+                    role="button"
+                    title="View"
+                    onClick={() => handleView(task)}
+                  ></i>
+                  <i
+                    className="bi bi-pencil-square text-warning me-3"
+                    role="button"
+                    title="Edit"
+                    onClick={() => handleEdit(task)}
+                  ></i>
                   <i className="bi bi-trash-fill text-danger" role="button" title="Delete"></i>
                 </td>
               </tr>
@@ -127,7 +179,119 @@ const TaskPage = () => {
 
       <div className="text-muted mt-3">Showing 1 to 7 of 7 results</div>
 
+      {/* Existing "New Task" modal */}
       <NewTaskModal show={showModal} handleClose={() => setShowModal(false)} />
+
+      {/* View-details Modal */}
+      <Modal
+        show={viewModal}
+        onHide={() => setViewModal(false)}
+        centered
+        scrollable
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Task Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selected && (
+            <div className="vstack gap-2">
+              <div><span className="fw-semibold">Task:</span> {selected.task}</div>
+              <div><span className="fw-semibold">Project:</span> {selected.project}</div>
+              <div><span className="fw-semibold">Status:</span> {selected.status}</div>
+              <div><span className="fw-semibold">Priority:</span> {selected.priority}</div>
+              <div><span className="fw-semibold">Assigned To:</span> {selected.assignedTo || 'Unassigned'}</div>
+              <div><span className="fw-semibold">Due Date:</span> {selected.dueDate || 'No due date'}</div>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setViewModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Edit Task Modal */}
+      <Modal
+        show={editModal}
+        onHide={() => setEditModal(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Task</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {editTask && (
+            <Form className="vstack gap-3">
+              <Form.Group>
+                <Form.Label>Task</Form.Label>
+                <Form.Control
+                  name="task"
+                  value={editTask.task}
+                  onChange={handleEditChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Project</Form.Label>
+                <Form.Control
+                  name="project"
+                  value={editTask.project}
+                  onChange={handleEditChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Status</Form.Label>
+                <Form.Select
+                  name="status"
+                  value={editTask.status}
+                  onChange={handleEditChange}
+                >
+                  <option>Pending</option>
+                  <option>In Progress</option>
+                  <option>Completed</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Priority</Form.Label>
+                <Form.Select
+                  name="priority"
+                  value={editTask.priority}
+                  onChange={handleEditChange}
+                >
+                  <option>Low</option>
+                  <option>Medium</option>
+                  <option>High</option>
+                </Form.Select>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Assigned To</Form.Label>
+                <Form.Control
+                  name="assignedTo"
+                  value={editTask.assignedTo}
+                  onChange={handleEditChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Due Date</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="dueDate"
+                  value={editTask.dueDate}
+                  onChange={handleEditChange}
+                />
+              </Form.Group>
+            </Form>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setEditModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleSave}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
