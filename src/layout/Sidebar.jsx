@@ -9,7 +9,8 @@ import { FaRegCalendar } from "react-icons/fa";
 import { BiBarChartAlt } from "react-icons/bi";
 import { FaTv } from "react-icons/fa";
 import { CiSettings } from "react-icons/ci";
-
+import { FaRegFileAlt } from "react-icons/fa";
+import { CiUser } from "react-icons/ci";
 
 const Sidebar = ({ collapsed , menuItemClick}) => {
   const [openSubmenu, setOpenSubmenu] = useState(null); // Tracks the open submenu
@@ -71,7 +72,7 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
             <div
               className="menu-link menu-i"
               onClick={() => {navigate("/user"); menuItemClick();} } >
-             <span> <RiTeamLine /></span>
+             <span> <CiUser /></span>
               <span className="User">User</span>
             </div>
           </li>
@@ -99,14 +100,23 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
               <span className="Reports">Reports</span>
             </div>
           </li>
+           <li className={`menu-item ${isActive("/help") ? "active" : ""}`}>
+            <div
+              className="menu-link menu-i d-flex"
+              onClick={() => {navigate("/help"); menuItemClick();} } >
+             <span><FaRegFileAlt /></span>
+              <span className="Help">Help</span>
+            </div>
+          </li>
           <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
             <div
               className="menu-link menu-i d-flex"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/setting"); menuItemClick();} } >
              <span><CiSettings /></span>
               <span className="Settings">Settings</span>
             </div>
           </li>
+         
          
 
           {/* Intake Management Section */}

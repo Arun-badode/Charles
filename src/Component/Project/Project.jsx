@@ -4,7 +4,6 @@ import "./Project.css";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const projects = [
-  // ...your projects array as before...
   {
     name: "McLane Pacific Mall - 500 Workstations",
     type: "Infrastructure",
@@ -65,8 +64,6 @@ const projects = [
     progress: 30,
     progressClass: "progress-bar-blue",
   },
-
-  // ...other projects...
 ];
 
 const projectTypes = [
@@ -151,16 +148,20 @@ const Projectmanagement = () => {
                           <span>Type: {proj.type}</span>
                           <span className={`badge ${proj.statusClass}`}>{proj.status}</span>
                         </div>
-                        
-                       
                       </td>
                       <td>{proj.phase}</td>
                       <td className={proj.status === "Delayed" ? "text-danger" : ""}>{proj.deadline}</td>
                       <td>{proj.created}</td>
                       <td className="text-end">
-                        <button className="btn btn-sm btn-light me-1"><i className="bi bi-eye"></i></button>
-                        <button className="btn btn-sm btn-light me-1"><i className="bi bi-pencil"></i></button>
-                        <button className="btn btn-sm btn-light"><i className="bi bi-three-dots"></i></button>
+                        <button className="btn btn-sm btn-link p-1" title="View">
+                          <i className="bi bi-eye-fill text-primary fs-4"></i>
+                        </button>
+                        <button className="btn btn-sm btn-link p-1" title="Edit">
+                          <i className="bi bi-pencil-square text-success fs-4"></i>
+                        </button>
+                        <button className="btn btn-sm btn-link p-1" title="Delete">
+                          <i className="bi bi-trash-fill text-danger fs-4"></i>
+                        </button>
                       </td>
                     </tr>
                   ))}

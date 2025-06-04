@@ -10,7 +10,7 @@
 }
 
 .sidebar-container.collapsed {
-  width: 80px;
+  width: 65px;
 }
 
 .sidebar-container.collapsed .submenu .submenu-item {
@@ -182,6 +182,15 @@
   color: rgb(164, 14, 218);
 }
 .sidebar-container.collapsed .menu .User{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.Help{
+  margin-left: 10px;
+  color: rgb(218, 14, 194);
+}
+.sidebar-container.collapsed .menu .Help{
   opacity: 0;
   visibility: hidden;
 }

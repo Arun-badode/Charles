@@ -19,6 +19,10 @@ import ReportsAnalytics from "./Component/Report/Report.jsx";
 import TaskPage from "./Component/Task/TaskPage.jsx";
 import FileManager from "./Component/File/File.jsx";
 
+import SettingsPage from "./Component/Settings/SettingsPage.jsx";
+import HelpCenterPage from "./Component/Help/Help.jsx";
+
+
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
@@ -71,7 +75,15 @@ function App() {
                <Route path="/project" element={< Projectmanagement/>} />
                <Route path="/report" element={< ReportsAnalytics/>} />
               <Route path="/task" element={<TaskPage/>} />
+
                <Route path="/file" element={<FileManager/>} />
+
+              <Route path="/setting" element={<SettingsPage/>} />
+
+
+
+              <Route path="/help" element={<HelpCenterPage/>} />
+
               
               {/* Add other routes here */}
             </Routes>
