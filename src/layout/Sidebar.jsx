@@ -102,7 +102,7 @@ const Sidebar = ({ collapsed , menuItemClick}) => {
           <li className={`menu-item ${isActive("/a") ? "active" : ""}`}>
             <div
               className="menu-link menu-i d-flex"
-              onClick={() => {navigate("/kkk"); menuItemClick();} } >
+              onClick={() => {navigate("/setting"); menuItemClick();} } >
              <span><CiSettings /></span>
               <span className="Settings">Settings</span>
             </div>
